@@ -13,7 +13,7 @@ We plan to create an app that will make time management a far easier task for ev
 ---
 
 ##### Why is it important and interesting?
-As college students, we find ourselves always at a strain for time. Being able to manage our time better is sometime many of us focus on daily. Using the app, students will be able to better understand their habits and figure out how they can use their time better.
+As college students, we find ourselves always at a strain for time. Being able to manage our time better is something many of us focus on daily. Using the app, users will be able to better understand their habits and figure out how they can use their time better.
 
 ---
 
