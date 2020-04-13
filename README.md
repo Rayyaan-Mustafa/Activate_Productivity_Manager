@@ -1,24 +1,30 @@
 # CS 100 Programming Project
 
-A.  Rayyaan Mustafa rmust001@ucr.edu
-    Anthony Gao agao011@ucr.edu
-    Kevin Nguyen knguy523@ucr.edu
+A.  <br />
+    Rayyaan Mustafa rmust001@ucr.edu<br />
+    Anthony Gao agao011@ucr.edu<br />
+    Kevin Nguyen knguy523@ucr.edu<br />
   
-B.  Productivity Manager
+B.  <br />
+Productivity Manager
 
-C.  We plan to create an app that will make time management a far easier task for everyone by allowing users to log what they do with their time and providing analytics to them on how they've been spending their time.
+C.  <br />
+We plan to create an app that will make time management a far easier task for everyone by allowing users to log what they do with their time and providing analytics to them on how they've been spending their time.
 
-D.  As college students, we find ourselves always at a strain for time. Being able to manage our time better is sometime many of us focus on daily. Using the app, students will be able to better understand their habits and figure out how they can use their time bette.r
+D. <br /> 
+As college students, we find ourselves always at a strain for time. Being able to manage our time better is something many of us focus on daily. Using the app, users will be able to better understand their habits and figure out how they can use their time better.
 
-E.  HTMl- used to make raw website
-    CSS - used to customize website
-    JS - used to add interactivty to website
-    D3.JS - used for visualization 
-    SQL database to store user data
-    Auth0 for user authentication
+E.  <br />
+    HTMl- used to make raw website<br />
+    CSS - used to customize website<br />
+    JS - used to add interactivty to website<br />
+    D3.JS - used for visualization <br />
+    SQL database to store user data<br />
+    Auth0 for user authentication<br />
     
-F. input will be data about the user's daily activities, inputted directly by the user
-   two main forms of output:
-    1. personalized graphs that will visualize to a user how their time is being spent
-    2. Tips to user on how to boost productivity based on their habits and pre-made templates
+F. <br />
+    input will be data about the user's daily activities, inputted directly by the user<br />
+    two main forms of output:<br />
+    1. personalized graphs that will visualize to a user how their time is being spent<br />
+    2. Tips to user on how to boost productivity based on their habits and pre-made templates<br />
 
