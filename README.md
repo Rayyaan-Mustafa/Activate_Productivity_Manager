@@ -1,7 +1,5 @@
 # CS 100 Programming Project - Productivity Manager
 
----
-
 ##### Group Members
 Rayyaan Mustafa (<rmust001@ucr.edu>)  
 Anthony Gao (<agao011@ucr.edu>)  
