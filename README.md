@@ -21,9 +21,9 @@ As college students, we find ourselves always at a strain for time. Being able t
 	HTML - used to make raw website  
     CSS - used to customize website  
     JS - used to add interactivty to website  
-    D3.JS - used for visualization  
+    Chart.js - used for visualization  
     SQL database to store user data  
-    Auth0 for user authentication  
+    Auth0 for user authentication
     
 ---
 
@@ -31,3 +31,5 @@ As college students, we find ourselves always at a strain for time. Being able t
 Input will be data about the user's daily activities, inputted directly by the user two main forms of output:
 - Personalized graphs that will visualize to a user how their time is being spent
 - Tips to user on how to boost productivity based on their habits and pre-made templates
+
+
