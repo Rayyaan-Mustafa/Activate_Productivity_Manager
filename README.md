@@ -32,4 +32,8 @@ Input will be data about the user's daily activities, inputted directly by the u
 - Personalized graphs that will visualize to a user how their time is being spent
 - Tips to user on how to boost productivity based on their habits and pre-made templates
 
+---
 
+# Design Patterns
+
+![Decorator Pattern](/DesignPatternPictures/DecoratorPattern.png)
