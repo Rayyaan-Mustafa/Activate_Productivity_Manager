@@ -39,8 +39,15 @@ Input will be data about the user's daily activities, inputted directly by the u
 ## Composite Pattern
 ![Composite Pattern](/DesignPatternPictures/CompositePattern.png)
 We used the composite design pattern because we wanted the functionality of adding activities to days and having the display function be different for activities, days, weeks, months, and years. They also each have a has-a relationship with each other, so composite design pattern is ideal.
+
+---
+
 ## Strategy Pattern
 ![Strategy Pattern](/DesignPatternPictures/StrategyPattern.png)
+Depending on the user inputted data, the insights strategy pattern will produce suggestions that the user may take. Crossing set thresholds may be a trigger to suggest a break, reduction, or increase of that activity. Currently, it consists of 5 concrete strategies that can display the triggered insight.
+
+---
+
 ## Decorator Pattern
 ![Decorator Pattern](/DesignPatternPictures/DecoratorPattern.png)
 The decorator design pattern allows us to add new functioniality to already existing objects. With this pattern we have Chart as our abstract component. Chart has three concrete components namely, Radar, Pie, and Line chart. Chart Decorator is our abstract decorator and it has two concrecte decorators namely, Default Colors Decorator and Dark Colors Decorator. This design pattern allows us the functionality to alter the color scheme of our charts during run-time
