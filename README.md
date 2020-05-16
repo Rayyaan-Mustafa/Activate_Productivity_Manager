@@ -36,4 +36,10 @@ Input will be data about the user's daily activities, inputted directly by the u
 
 # Design Patterns
 
+## Composite Pattern
+![Composite Pattern](/DesignPatternPictures/CompositePattern.png)
+## Strategy Pattern
+![Strategy Pattern](/DesignPatternPictures/StrategyPattern.png)
+## Decorator Pattern
 ![Decorator Pattern](/DesignPatternPictures/DecoratorPattern.png)
+The decorator design pattern allows us to add new functioniality to already existing objects. With this pattern we have Chart as our abstract component. Chart has three concrete components namely, Radar, Pie, and Line chart. Chart Decorator is our abstract decorator and it has two concrecte decorators namely, Default Colors Decorator and Dark Colors Decorator. This design pattern allows us the functionality to alter the color scheme of our charts during run-time
