@@ -21,9 +21,9 @@ As college students, we find ourselves always at a strain for time. Being able t
 	HTML - used to make raw website  
     CSS - used to customize website  
     JS - used to add interactivty to website  
-    D3.JS - used for visualization  
+    Chart.js - used for visualization  
     SQL database to store user data  
-    Auth0 for user authentication  
+    ~~Auth0 for user authentication~~
     
 ---
 
