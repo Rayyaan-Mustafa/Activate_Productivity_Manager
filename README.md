@@ -38,6 +38,7 @@ Input will be data about the user's daily activities, inputted directly by the u
 
 ## Composite Pattern
 ![Composite Pattern](/DesignPatternPictures/CompositePattern.png)
+We used the composite design pattern because we wanted the functionality of adding activities to days and having the display function be different for activities, days, weeks, months, and years. They also each have a has-a relationship with each other, so composite design pattern is ideal.
 ## Strategy Pattern
 ![Strategy Pattern](/DesignPatternPictures/StrategyPattern.png)
 ## Decorator Pattern
