@@ -1,18 +1,20 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="dashboard.css">
+
 </head>
 <body>
 
 <h1>Activate</h1>
 
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Calendar')" id="defaultOpen">Calendar</button>
-  <button class="tablinks" onclick="openCity(event, 'Visualize')">Visualize</button>
-  <button class="tablinks" onclick="openCity(event, 'Insights')">Insights</button>
-  <button class="tablinks" onclick="openCity(event, 'Settings')" = id="defaultOpen">Calendar</button>
+  <button class="tablinks" onclick="openActivateTab(event, 'Calendar')">Calendar</button>
+  <button class="tablinks" onclick="openActivateTab(event, 'Visualize')">Visualize</button>
+  <button class="tablinks" onclick="openActivateTab(event, 'Insights')">Insights</button>
+  <button class="tablinks" onclick="openActivateTab(event, 'Settings')">Settings</button>
 </div>
 
 <div id="Calendar" class="tabcontent">
@@ -36,7 +38,7 @@
 </div>
 
 <script>
-function openCity(evt, cityName) {
+function openActivateTab(evt, ActivateTabName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
@@ -46,13 +48,11 @@ function openCity(evt, cityName) {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  document.getElementById(cityName).style.display = "block";
+  document.getElementById(ActivateTabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
 </script>
    
 </body>
 </html> 
+
