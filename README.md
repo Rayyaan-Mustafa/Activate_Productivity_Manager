@@ -22,8 +22,7 @@ As college students, we find ourselves always at a strain for time. Being able t
     CSS - used to customize website  
     JS - used to add interactivty to website  
     Chart.js - used for visualization  
-    SQL database to store user data  
-    Auth0 for user authentication
+    localStorage to store user data  
     
 ---
 

@@ -29,9 +29,10 @@ h1{
 }
 
 /* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
+.tab button:hover, h1:hover {
+  background-color: #ddd;/* TODO: need a better color and figure out how to only highlight the text part, not the entire box;*/
 }
+
 
 /* Create an active/current tablink class */
 .tab button.active {
@@ -45,3 +46,4 @@ h1{
   border: 1px solid #ccc;
   border-top: none;
 }
+

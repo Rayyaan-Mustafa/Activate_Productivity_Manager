@@ -4,13 +4,14 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="dashboard.css">
+<script src="main.js"></script>
 
 </head>
 <body>
 
-<h1>Activate</h1>
 
 <div class="tab">
+  <h1 class="tablinks" onclick="openActivateTab(event, 'Activate')">Activate</h1>
   <button class="tablinks" onclick="openActivateTab(event, 'Calendar')">Calendar</button>
   <button class="tablinks" onclick="openActivateTab(event, 'Visualize')">Visualize</button>
   <button class="tablinks" onclick="openActivateTab(event, 'Insights')">Insights</button>
@@ -19,7 +20,9 @@
 
 <div id="Calendar" class="tabcontent">
   <h3>Calendar</h3>
-  <p>TO-DO: ADD CALENDAR WITH INPUT ABILITY HERE</p>
+  <fieldset>
+      <legend>Please enter time of event</legend>
+  </fieldset>
 </div>
 
 <div id="Visualize" class="tabcontent">
@@ -37,21 +40,10 @@
   <p>insert settings page here</p>
 </div>
 
-<script>
-function openActivateTab(evt, ActivateTabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(ActivateTabName).style.display = "block";
-  evt.currentTarget.className += " active";
-}
-</script>
+<div id="Activate" class="tabcontent">
+  <h3>Activate Home</h3>
+  <p>insert home stuff here</p>
+</div>
    
 </body>
 </html> 
