@@ -32,12 +32,38 @@ function submitInput(){
   const endHourInput = document.querySelector('#endHour').value;
   const eventTitleInput = document.querySelector('#eventTitle').value;
   //e.preventDefault();//if this whole function doesnt work then just follow traveries method of event listenr
+  if(localStorage.length == 0){
+    localStorage.setItem("day",dayInput);
+    localStorage.setItem("month",monthInput);
+    localStorage.setItem("year",yearInput);
+    localStorage.setItem("startHour",startHourInput);
+    localStorage.setItem("endHour",endHourInput);
+    localStorage.setItem("eventTitle",eventTitleInput);
+  }
+  else {//if something is already in local storage, it appends the next input
+    let a = localStorage.getItem('day');
+    a += ';' + dayInput;
+    localStorage.setItem("day",a);
 
-  localStorage.setItem("day",dayInput);
-  localStorage.setItem("month",monthInput);
-  localStorage.setItem("year",yearInput);
-  localStorage.setItem("startHour",startHourInput);
-  localStorage.setItem("endHour",endHourInput);
-  localStorage.setItem("eventTitle",eventTitleInput);
+    a = localStorage.getItem('month');
+    a += ';' + dayInput;
+    localStorage.setItem("month",a);
 
+    a = localStorage.getItem('year');
+    a += ';' + dayInput;
+    localStorage.setItem("year",a);
+
+    a = localStorage.getItem('startHour');
+    a += ';' + dayInput;
+    localStorage.setItem("startHour",a);
+
+    a = localStorage.getItem('endHour');
+    a += ';' + dayInput;
+    localStorage.setItem("endHour",a);
+
+    a = localStorage.getItem('eventTitle');
+    a += ';' + dayInput;  
+    localStorage.setItem("eventTitle",a);
+
+  }
 }
