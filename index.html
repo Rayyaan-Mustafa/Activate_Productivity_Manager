@@ -117,13 +117,14 @@
 
     <ul id="events">Events List</ul>
 
+
     <div class="calendar" id="calendar">
-      <div class="calendar-btn month-btn" onclick="drawCalendarMonths()">
-        <span id="curMonth"></span>
-        <div id="months" class="months dropdown"></div>
+      <div class="calendar-btn month-btn" onclick="loadCalendarMonths()">
+        <span id="curMonth" onclick="hideCalendarMonths()"></span>
+        <div id="months" class="months dropdown" onclick="hideCalendarMonths()"></div>
       </div>
 
-      <div class="calendar-btn year-btn" onclick="loadYears()">
+      <div class="calendar-btn year-btn" onclick="$('years').toggle('fast')">
         <span id="curYear"></span>
         <div id="years" class="years dropdown"></div>
       </div>
@@ -147,6 +148,16 @@
         </div>
       </div>
     </div>
+
+
+
+
+    <!-- <div id="calendar">
+      <p id="calendar-day"></p>
+      <p id="calendar-date"></p>
+      <p id="calendar-month-year"></p>
+    </div> -->
+  </div>
 
   </div>
 
