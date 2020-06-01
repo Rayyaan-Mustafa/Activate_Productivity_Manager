@@ -47,3 +47,17 @@ h1{
   border-top: none;
 }
 
+.btn {
+  display: block;
+  width: 10%;
+  padding: 10px 10px;
+  border: 0;
+  background: #333;
+  color: #fff;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.btn:hover {
+  background: #444;
+}

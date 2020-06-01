@@ -1,3 +1,5 @@
+
+
 function openActivateTab(evt, ActivateTabName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -11,3 +13,13 @@ function openActivateTab(evt, ActivateTabName) {
   document.getElementById(ActivateTabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+// function createDropdown(identification, count) { 
+//     for(var i=1; i<=count; i++){
+//       var select = document.getElementById(identification);
+//       var option = document.createElement("OPTION");
+//       select.options.add(option);
+//       option.text = i;
+//       option.value = i;
+//     }
+// }
