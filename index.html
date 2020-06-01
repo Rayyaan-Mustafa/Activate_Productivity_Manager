@@ -21,96 +21,100 @@
 <div id="Calendar" class="tabcontent">
   <h3>Calendar</h3>
   <fieldset>
-      <legend>Please enter time of event</legend>
-      <div>
-        <label for="day">Day:</label>
-        <select id = "day">
-          <script type="text/javascript">
-            for(var i=1; i<=31; i++){
-              var select = document.getElementById("day");
-              var option = document.createElement("OPTION");
-              select.options.add(option);
-              option.text = i;
-              option.value = i;
-            }
-          </script>
-        </select>
-      </div>
-      <div>
-        <label for="month">Month:</label>
-        <select id="month">
-          <script type="text/javascript">
-            for(var i=1; i<=12; i++){
-              var select = document.getElementById("month");
-              var option = document.createElement("OPTION");
-              select.options.add(option);
-              option.text = i;
-              option.value = i;
-            }
-          </script>          
-        </select>
-      </div>
-      <div>
-        <label for="year">Year:</label>
-        <select id="year">
-          <script type="text/javascript">
-            for(var i=2020; i<=2025; i++){
-              var select = document.getElementById("year");
-              var option = document.createElement("OPTION");
-              select.options.add(option);
-              option.text = i;
-              option.value = i;
-            }
-          </script>          
-        </select>
-      </div>
-      <div>
-        <label for="startHour">Start Hour:</label>
-        <select id="startHour">
-          <script type="text/javascript">
-            for(var i=0; i<=24; i++){
-              var select = document.getElementById("startHour");
-              var option = document.createElement("OPTION");
-              select.options.add(option);
-              option.text = i;
-              option.value = i;
-            }
-          </script>          
-        </select>
-      </div>
-      <div>
-        <label for="endHour">End Hour:</label>
-        <select id="endHour">
-          <script type="text/javascript">
-            for(var i=0; i<=24; i++){
-              var select = document.getElementById("endHour");
-              var option = document.createElement("OPTION");
-              select.options.add(option);
-              option.text = i;
-              option.value = i;
-            }
-          </script>          
-        </select>
-      </div>
-      <div>
-        <label for="eventTitle">Event Title:</label>
-        <select id="eventTitle">
-          <option value="downtime">downtime</option>
-          <option value="eating">eating</option>
-          <option value="exercise">exercise</option>
-          <option value="family-time">family-time</option>  
-          <option value="homework">homework</option>
-          <option value="productive-work">productive-work</option>
-          <option value="reading">reading</option>
-          <option value="sleep">sleep</option>
-          <option value="social-time">social-time</option>
-          <option value="work">work</option>
-        </select>
-      </div>
-      <div>
-         <input class="btn" type="submit" value="Submit">
-      </div>
+      <legend>Please enter time and date of event</legend>
+        <div>
+          <label for="day">Day:</label>
+          <select id = "day">
+            <script type="text/javascript">
+              for(var i=1; i<=31; i++){
+                var select = document.getElementById("day");
+                var option = document.createElement("OPTION");
+                select.options.add(option);
+                option.text = i;
+                option.value = i;
+              }
+            </script>
+          </select>
+        </div>
+        <div>
+          <label for="month">Month:</label>
+          <select id="month">
+            <script type="text/javascript">
+              for(var i=1; i<=12; i++){
+                var select = document.getElementById("month");
+                var option = document.createElement("OPTION");
+                select.options.add(option);
+                option.text = i;
+                option.value = i;
+              }
+            </script>          
+          </select>
+        </div>
+        <div>
+          <label for="year">Year:</label>
+          <select id="year">
+            <script type="text/javascript">
+              for(var i=2020; i<=2025; i++){
+                var select = document.getElementById("year");
+                var option = document.createElement("OPTION");
+                select.options.add(option);
+                option.text = i;
+                option.value = i;
+              }
+            </script>          
+          </select>
+        </div>
+        <div>
+          <label for="startHour">Start Hour:</label>
+          <select id="startHour">
+            <script type="text/javascript">
+              for(var i=0; i<=24; i++){
+                var select = document.getElementById("startHour");
+                var option = document.createElement("OPTION");
+                select.options.add(option);
+                option.text = i;
+                option.value = i;
+              }
+            </script>          
+          </select>
+        </div>
+        <div>
+          <label for="endHour">End Hour:</label>
+          <select id="endHour">
+            <script type="text/javascript">
+              for(var i=0; i<=24; i++){
+                var select = document.getElementById("endHour");
+                var option = document.createElement("OPTION");
+                select.options.add(option);
+                option.text = i;
+                option.value = i;
+              }
+            </script>          
+          </select>
+        </div>
+        <div>
+          <label for="eventTitle">Event Title:</label>
+          <select id="eventTitle">
+            <option value="downtime">downtime</option>
+            <option value="eating">eating</option>
+            <option value="exercise">exercise</option>
+            <option value="family-time">family-time</option>  
+            <option value="homework">homework</option>
+            <option value="productive-work">productive-work</option>
+            <option value="reading">reading</option>
+            <option value="sleep">sleep</option>
+            <option value="social-time">social-time</option>
+            <option value="work">work</option>
+          </select>
+        </div>
+        <div>
+           <input class="btn" type="submit" value="Submit" onclick="submitInput()">
+        </div>
   </fieldset>
+
+  <ul id="events">Events List</ul>
+  
+
 </div>
 
 <div id="Visualize" class="tabcontent">

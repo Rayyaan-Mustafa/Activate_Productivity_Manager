@@ -23,3 +23,21 @@ function openActivateTab(evt, ActivateTabName) {
 //       option.value = i;
 //     }
 // }
+
+function submitInput(){
+  const dayInput = document.querySelector('#day').value;
+  const monthInput = document.querySelector('#month').value;
+  const yearInput = document.querySelector('#year').value;
+  const startHourInput = document.querySelector('#startHour').value;
+  const endHourInput = document.querySelector('#endHour').value;
+  const eventTitleInput = document.querySelector('#eventTitle').value;
+  //e.preventDefault();//if this whole function doesnt work then just follow traveries method of event listenr
+
+  localStorage.setItem("day",dayInput);
+  localStorage.setItem("month",monthInput);
+  localStorage.setItem("year",yearInput);
+  localStorage.setItem("startHour",startHourInput);
+  localStorage.setItem("endHour",endHourInput);
+  localStorage.setItem("eventTitle",eventTitleInput);
+
+}
