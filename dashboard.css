@@ -42,6 +42,7 @@ h1{
 /* Style the tab content */
 .tabcontent {
   display: none;
+  overflow: hidden;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
@@ -66,6 +67,19 @@ select:hover {
   background: #fff;
 
  }
+ .cal_fs{
+  float:left;
+  width: 51%;
+ }
+ .cal_events{
+   float:left;
+   width: 50%;
+ }
+ .calendar {
+  right: 40px;
+  position: absolute;
+  width: 40%;
+ }
  .calendar .calendar-btn
  {
      float: left;
@@ -86,7 +100,7 @@ select:hover {
      background-color:#1f71a1;
  }
  
- .calendar .year-btn
+ .calendar .curYear
  {
      float:right;
  }
@@ -94,7 +108,7 @@ select:hover {
  .calendar .calendar-dates .days .day
  {
      float:left;
-     width: 10%;
+     width: 9.5%;
      margin: 1%;
      padding: 1%;
      font-size:13pt;
@@ -138,7 +152,7 @@ select:hover {
  
  @media only screen and (max-width: 480px) {
      .calendar{
-         width: 50%;
+         width: 100%;
          margin: 0px;
          margin: 0px;
          box-sizing: border-box;

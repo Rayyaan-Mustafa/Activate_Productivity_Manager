@@ -13,6 +13,7 @@ function openActivateTab(evt, ActivateTabName) {
   document.getElementById(ActivateTabName).style.display = "block";
   evt.currentTarget.className += " active";
   if (ActivateTabName == 'Calendar') {
+    loadCalendarDays();
     //loadCalendarYears();
   }
 }
@@ -23,61 +24,47 @@ var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oc
 var startYear = 2010;
 var endYear = 2030;
 var month = 0;
-var year = 0;
+var year = 2020;
 
-function loadCalendarMonths() {
-  for (var i = 0; i < months.length; i++) {
-    var doc = document.createElement("div");
-    doc.setAttribute('id', months[i]);
-    doc.innerHTML = months[i];
-    //doc.classList.add("dropdown-item");
-
-    doc.onclick = (function () {
-      var selectedMonth = i;
-
-      return function () {
-        month = selectedMonth;
-        loadCalendarDays();
-        hideCalendarMonths();
-        return month;
-      }
-
-    })();
-
-    document.getElementById("months").appendChild(doc);
+function loadCalendarMonth(newmonth) {
+  if (newmonth == -1) {
+    return;
   }
-
+  month = newmonth - 1;
+  loadCalendarDays();
+  document.getElementById("curMonth").innerHTML = months[newmonth - 1];
 }
 
-function hideCalendarMonths() {
-  for (var j = 0; j < months.length; j++) {
-    var elem = document.getElementById(months[j]);
-    elem.style.display = "none";
-    elem.parentNode.removeChild(elem);
+function loadCalendarYear(newyear) {
+  if (newyear == -1) {
+    return;
   }
+  year = newyear;
+  loadCalendarDays();
+  document.getElementById("curYear").innerHTML = newyear;
 }
 
-function loadCalendarYears() {
-  document.getElementById("years").innerHTML = "";
+// function loadCalendarYears() {
+//   document.getElementById("years").innerHTML = "";
 
-  for (var i = startYear; i <= endYear; i++) {
-    var doc = document.createElement("div");
-    doc.innerHTML = i;
-    doc.classList.add("dropdown-item");
+//   for (var i = startYear; i <= endYear; i++) {
+//     var doc = document.createElement("div");
+//     doc.innerHTML = i;
+//     doc.classList.add("dropdown-item");
 
-    doc.onclick = (function () {
-      var selectedYear = i;
-      return function () {
-        year = selectedYear;
-        document.getElementById("curYear").innerHTML = year;
-        loadCalendarDays();
-        return year;
-      }
-    })();
+//     doc.onclick = (function () {
+//       var selectedYear = i;
+//       return function () {
+//         year = selectedYear;
+//         document.getElementById("curYear").innerHTML = year;
+//         loadCalendarDays();
+//         return year;
+//       }
+//     })();
 
-    document.getElementById("years").appendChild(doc);
-  }
-}
+//     document.getElementById("years").appendChild(doc);
+//   }
+// }
 
 
 
@@ -121,31 +108,9 @@ window.addEventListener('load', function () {
   year = date.getFullYear();
   document.getElementById("curMonth").innerHTML = months[month];
   document.getElementById("curYear").innerHTML = year;
-  //loadCalendarYears();
   loadCalendarDays();
 });
 
-// //this function will find today's date
-// function calendar() {
-//   var day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-//   var month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-//   var d = new Date();
-//   setText('calendar-day', day[d.getDay()]);
-//   setText('calendar-date', d.getDate());
-//   setText('calendar-month-year', month[d.getMonth()] + ' ' + (1900 + d.getYear()));
-// };
-
-// //this function will set the text value of 
-// tags
-// function setText(id, val) {
-//   if (val < 10) {
-//     val = '0' + val;    //add leading 0 if val < 10
-//   }
-//   document.getElementById(id).innerHTML = val;
-// };
-
-// //call calendar() when page load
-// window.onload = calendar;
 
 // function createDropdown(identification, count) { 
 //     for(var i=1; i<=count; i++){
