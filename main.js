@@ -46,23 +46,23 @@ function submitInput(){
     localStorage.setItem("day",a);
 
     a = localStorage.getItem('month');
-    a += ';' + dayInput;
+    a += ';' + monthInput;
     localStorage.setItem("month",a);
 
     a = localStorage.getItem('year');
-    a += ';' + dayInput;
+    a += ';' + yearInput;
     localStorage.setItem("year",a);
 
     a = localStorage.getItem('startHour');
-    a += ';' + dayInput;
+    a += ';' + startHourInput;
     localStorage.setItem("startHour",a);
 
     a = localStorage.getItem('endHour');
-    a += ';' + dayInput;
+    a += ';' + endHourInput;
     localStorage.setItem("endHour",a);
 
     a = localStorage.getItem('eventTitle');
-    a += ';' + dayInput;  
+    a += ';' + eventTitleInput;  
     localStorage.setItem("eventTitle",a);
 
   }
