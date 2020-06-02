@@ -64,6 +64,16 @@ function submitInput(){
     a = localStorage.getItem('eventTitle');
     a += ';' + eventTitleInput;  
     localStorage.setItem("eventTitle",a);
+  } 
+}
 
-  }
+function alert(){
+    $('.alert').addClass("show");
+    $('.alert').removeClass("hide");
+    $('.alert').addClass("showAlert");
+    // timeout so that msg fades
+    setTimeout(function(){
+      $('.alert').removeClass("show");
+      $('.alert').addClass("hide");
+    },1250);
 }

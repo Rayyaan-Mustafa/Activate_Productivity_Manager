@@ -1,16 +1,21 @@
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="dashboard.css">
 <script src="main.js"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 </head>
 <body>
 
 
 <div class="tab">
+  <script >
+    $('.alert').removeClass("show");
+    $('.alert').addClass("hide");
+  </script>
   <h1 class="tablinks" onclick="openActivateTab(event, 'Activate')">Activate</h1>
   <button class="tablinks" onclick="openActivateTab(event, 'Calendar')">Calendar</button>
   <button class="tablinks" onclick="openActivateTab(event, 'Visualize')">Visualize</button>
@@ -108,7 +113,11 @@
           </select>
         </div>
         <div>
-           <input class="btn" type="submit" value="Submit" onclick="submitInput()">
+           <input class="btn" type="submit" value="Submit" onclick="submitInput(); alert()">
+        </div>
+        <div class="alert msg">
+          <span class="fas fa-check"></span>
+          <span class="msg">Event added!</span>
         </div>
   </fieldset>
 
@@ -138,5 +147,4 @@
 </div>
    
 </body>
-</html> 
-
+</html>
