@@ -1,5 +1,8 @@
-body { font-family: "Lato", sans-serif;
+body { 
+  font-family: "Lato", sans-serif;
+  overflow: hidden;
 }
+
 h1{
     background-color: #455a64;    /* Light gray */
     color: #40c4ff;

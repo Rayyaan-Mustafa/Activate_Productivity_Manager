@@ -1,5 +1,3 @@
-
-
 function openActivateTab(evt, ActivateTabName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -257,3 +255,7 @@ function resetLocalStorage() {
 
 var eventsContainer = [];//array for each object 
 createPreviousArray()
+
+
+
+

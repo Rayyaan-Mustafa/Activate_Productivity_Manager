@@ -25,8 +25,6 @@
     <button class="tablinks" onclick="openActivateTab(event, 'Settings')">Settings</button>
   </div>
 
-
-
   <div id="Calendar" class="tabcontent">
     <h3>Calendar</h3>
     <fieldset class="cal_fs">
@@ -270,8 +268,12 @@
           <div class="clear"></div>
           <br>
         </div>
-
-        <div id="calendarDays" class="days">
+        <div>
+          <input class="btn" type="submit" value="Submit" onclick="submitInput(); alert()">
+        </div>
+        <div class="alert msg">
+          <span class="fas fa-check"></span>
+          <span class="msg">Event added!</span>
         </div>
       </div>
 
