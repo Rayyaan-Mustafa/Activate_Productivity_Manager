@@ -1,5 +1,8 @@
-body { font-family: "Lato", sans-serif;
+body { 
+  font-family: "Lato", sans-serif;
+  overflow: hidden;
 }
+
 h1{
     background-color: #455a64;    /* Light gray */
     color: #40c4ff;
@@ -66,3 +69,52 @@ select:hover {
   background: #fff;
 
  }
+
+.alert{
+  background: #d0ff9b;
+  padding: 20px 40px;
+  min-width: 100px;
+  position: absolute;
+  right: 0;
+  top: 10px;
+  border-radius: 4px;
+  border-left: 8px solid #008d18f6;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.alert.showAlert{
+  opacity: 1;
+  pointer-events: auto;
+}
+.alert.show{
+  animation: show_slide 2s ease forwards;
+}
+@keyframes show_slide {
+  0%{
+    transform: translateX(100%);
+  }
+  50%{
+    transform: translateX(0%);
+  }
+}
+.alert.hide{
+  opacity: 0;
+  -webkit-transition: opacity 1.5s linear;
+  -moz-transition: opacity 1.5s linear;
+  -o-transition: opacity 1.5s linear;
+  transition: opacity 1.5s linear;
+}
+.alert .fa-check{
+  position: absolute;
+  left: 25px;
+  top: 50%;
+  transform: translateY(-55%);
+  color: #008d18f6;
+  font-size: 20px;
+}
+.alert .msg{
+  padding: 0 20px;
+  font-size: 18px;
+  color: #008d18f6;
+}

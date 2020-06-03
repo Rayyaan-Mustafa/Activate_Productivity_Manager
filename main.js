@@ -1,5 +1,3 @@
-
-
 function openActivateTab(evt, ActivateTabName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -118,32 +116,127 @@ function submitInput() {
     localStorage.setItem("startHour", startHourInput);
     localStorage.setItem("endHour", endHourInput);
     localStorage.setItem("eventTitle", eventTitleInput);
+
+    eventsContainer.push(new ActivateEvent(dayInput, monthInput, yearInput, startHourInput, endHourInput, eventTitleInput))
+
   }
   else {//if something is already in local storage, it appends the next input
     let a = localStorage.getItem('day');
     a += ';' + dayInput;
     localStorage.setItem("day", a);
 
-    a = localStorage.getItem('month');
-    a += ';' + monthInput;
-    localStorage.setItem("month", a);
+    let b = localStorage.getItem('month');
+    b += ';' + monthInput;
+    localStorage.setItem("month", b);
 
-    a = localStorage.getItem('year');
-    a += ';' + yearInput;
-    localStorage.setItem("year", a);
+    let c = localStorage.getItem('year');
+    c += ';' + yearInput;
+    localStorage.setItem("year", c);
 
-    a = localStorage.getItem('startHour');
-    a += ';' + startHourInput;
-    localStorage.setItem("startHour", a);
+    let d = localStorage.getItem('startHour');
+    d += ';' + startHourInput;
+    localStorage.setItem("startHour", d);
 
-    a = localStorage.getItem('endHour');
-    a += ';' + endHourInput;
-    localStorage.setItem("endHour", a);
+    let e = localStorage.getItem('endHour');
+    e += ';' + endHourInput;
+    localStorage.setItem("endHour", e);
 
-    a = localStorage.getItem('eventTitle');
-    a += ';' + eventTitleInput;
-    localStorage.setItem("eventTitle", a);
+    let f = localStorage.getItem('eventTitle');
+    f += ';' + eventTitleInput;
+    localStorage.setItem("eventTitle", f);
 
+    eventsContainer.push(new ActivateEvent(dayInput, monthInput, yearInput, startHourInput, endHourInput, eventTitleInput))
   }
 }
+
+function alert() {
+  $('.alert').addClass("show");
+  $('.alert').removeClass("hide");
+  $('.alert').addClass("showAlert");
+  // timeout so that msg fades
+  setTimeout(function () {
+    $('.alert').removeClass("show");
+    $('.alert').addClass("hide");
+  }, 1250);
+}
+
+function getNumOfEvents() {
+  if (localStorage.length == 0) {
+    return 0
+  }
+  else {
+    return localStorage.getItem("day").split(';').length;
+  }
+}
+
+// function getHoursOfEvent(){//(string of localstorage key)
+
+// }
+
+function createPreviousArray() {//on page refresh eventsContainer is emptied, so we need this function
+  if (localStorage.length == 0) {//if LS is empty, do nothing
+    return
+  }
+  else if (eventsContainer.length > 0) {//if something already exists in eventsContainer, do nothing
+    return
+  }
+  else if (eventsContainer.length == 0) {//only called on page refresh where localStorage has items, but events container does not
+    var dayArr = localStorage.getItem("day").split(';')
+    var monthArr = localStorage.getItem("month").split(';')
+    var yearArr = localStorage.getItem("year").split(';')
+    var startHourArr = localStorage.getItem("startHour").split(';')
+    var endHourArr = localStorage.getItem("endHour").split(';')
+    var eventTitleArr = localStorage.getItem("eventTitle").split(';')
+
+    for (var i = 0; i < getNumOfEvents(); i++) {
+      //eventsContainer.push(new ActivateEvent(localStorage.getItem("day").value,localStorage.getItem("month").value,localStorage.getItem("year").value,localStorage.getItem("startHour").value,localStorage.getItem("endHour").value,localStorage.getItem("eventTitle").value,))
+      eventsContainer.push(new ActivateEvent(dayArr[i], monthArr[i], yearArr[i], startHourArr[i], endHourArr[i], eventTitleArr[i]))
+
+    }
+  }
+
+}
+
+class ActivateEvent {
+  constructor(day, month, year, startHour, endHour, eventTitle) {
+    this.day = day;
+    this.month = month;
+    this.year = year;
+    this.startHour = startHour;
+    this.endHour = endHour;
+    this.eventTitle = eventTitle;
+  }
+  getValue(key) {
+    switch (key) {
+      case 'day':
+        return this.day;
+      case 'month':
+        return this.month;
+      case 'year':
+        return this.year;
+      case 'startHour':
+        return this.startHour;
+      case 'endHour':
+        return this.endHour;
+      case 'eventTitle':
+        return this.eventTitle;
+      default:
+        return "N/A"
+    }
+  }
+}
+
+function resetLocalStorage() {
+  localStorage.clear()
+}
+
+
+
+//page initialization stuff goes here
+
+var eventsContainer = [];//array for each object 
+createPreviousArray()
+
+
+
 
