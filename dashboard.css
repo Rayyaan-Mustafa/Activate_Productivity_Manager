@@ -74,6 +74,10 @@ h1{
   background: #853642;
 }
 
+#visualizeBtn {
+  width: fit-content;
+}
+
 select:hover { 
   background: #fff;
 
