@@ -147,8 +147,12 @@ class ActivateEvent {
   }
 }
 
-function resetLocalStorage(){
-  localStorage.clear()
+function resetLSAndContainer(){
+  if(window.confirm('Are you sure you want to reset your data? This action cannot be undone.')){
+    localStorage.clear()
+    eventsContainer = [];
+  }
+
 }
 
 
