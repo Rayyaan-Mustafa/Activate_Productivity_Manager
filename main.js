@@ -21,6 +21,7 @@ function openActivateTab(evt, ActivateTabName) {
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var month = 0;
 var year = 2020;
+var currday = 0;
 
 function loadCalendarMonth(newmonth) {
   if (newmonth == -1) {
@@ -61,6 +62,14 @@ function loadCalendarDays() {
     d.id = "calendarday_" + i;
     d.className = "day";
     d.innerHTML = tmp;
+    d.onclick = (function () {
+      var selectedDay = tmp;
+      return function () {
+        currday = selectedDay;
+        loadEventList();
+        return currday;
+      }
+    })();
 
     document.getElementById("calendarDays").appendChild(d);
   }
@@ -75,10 +84,25 @@ function daysInMonth(month, year) {
   return d.getDate();
 }
 
+function loadEventList() {
+  var result = "";
+  for (var i = 0; i < getNumOfEvents(); i++) {
+    if (eventsContainer[i].day == currday) {
+      result += eventsContainer[i].stringify();
+    }
+  }
+  if (result == "") {
+    result = "Empty";
+  }
+  document.getElementById("eventlist").innerHTML = result;
+
+}
+
 window.addEventListener('load', function () {
   var date = new Date();
   month = date.getMonth();
   year = date.getFullYear();
+  currday = date.getDay();
   document.getElementById("curMonth").innerHTML = months[month];
   document.getElementById("curYear").innerHTML = year;
   loadCalendarDays();
@@ -218,6 +242,10 @@ class ActivateEvent {
         return "N/A"
     }
   }
+  stringify() {
+
+    return "<br>" + this.eventTitle + "<br>from " + this.startHour + " to " + this.endHour + "<br>";
+  }
 }
 
 function resetLocalStorage() {
@@ -225,7 +253,7 @@ function resetLocalStorage() {
 }
 function resetLSAndContainer() {
   if (window.confirm('Are you sure you want to reset your data? This action cannot be undone.')) {
-    localStorage.clear()
+    localStorage.clear();
     eventsContainer = [];
   }
 
