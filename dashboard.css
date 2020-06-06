@@ -228,17 +228,3 @@ select:hover {
   font-size: 18px;
   color: #008d18f6;
 }
-
-.alert .fa-exclamation-circle{
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-55%);
-  color: #ce8500;
-  font-size: 30px;
-}
-.alert2 .msg{
-  padding: 0 20px;
-  font-size: 18px;
-  color: #ce8500;
-}

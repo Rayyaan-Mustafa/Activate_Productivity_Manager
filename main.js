@@ -254,7 +254,7 @@ function resetLocalStorage() {
 }
 
 function resetLSAndContainer() {
-  if (window.confirm('Are you sure you want to reset your data? This action cannot be undone.')) {
+  if (window.confirm('Are you sure you want to reset your data?\nThis action cannot be undone.')) {
     localStorage.clear();
     eventsContainer = [];
   }
