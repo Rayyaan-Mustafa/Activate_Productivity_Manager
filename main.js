@@ -282,8 +282,8 @@ function hrs_by_event_by_day(eventTitle, day, month, year) {
   return result
 }
 
-function displayRadarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHART
-  let radarChart = document.getElementById('radarChart').getContext('2d');
+function displayPolarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHART
+  let radarChart = document.getElementById('PolarChart').getContext('2d');
 
   window.chart = new Chart(radarChart, {
     type: 'polarArea',
