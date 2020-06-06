@@ -1,6 +1,6 @@
 body { 
   font-family: "Lato", sans-serif;
-  overflow: auto;
+  overflow-x: hidden;
 }
 
 h1{
@@ -66,7 +66,6 @@ h1{
 .btn:hover {
   background: #444;
 }
-
 
 #resetbtn{
   background: #a64452;
@@ -187,7 +186,7 @@ select:hover {
   min-width: 100px;
   position: absolute;
   right: 0;
-  top: 10px;
+  top: 15px;
   border-radius: 4px;
   border-left: 8px solid #008d18f6;
   overflow: hidden;
@@ -228,24 +227,4 @@ select:hover {
   padding: 0 20px;
   font-size: 18px;
   color: #008d18f6;
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }

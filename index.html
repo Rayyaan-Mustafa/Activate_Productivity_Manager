@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="dashboard.css">
   <script src="main.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 
 </head>
@@ -15,10 +15,6 @@
 
 
   <div class="tab">
-    <script>
-      $('.alert').removeClass("show");
-      $('.alert').addClass("hide");
-    </script>
     <h1 class="tablinks" onclick="openActivateTab(event, 'Activate')">Activate</h1>
     <button class="tablinks" onclick="openActivateTab(event, 'Calendar')">Calendar</button>
     <button class="tablinks" onclick="openActivateTab(event, 'Visualize')">Visualize</button>
@@ -118,7 +114,7 @@
       <div>
         <input class="btn" type="submit" value="Submit" onclick="submitInput(); alert()">
       </div>
-      <div class="alert msg">
+      <div class="alert">
         <span class="fas fa-check"></span>
         <span class="msg">Event added!</span>
       </div>
@@ -188,7 +184,6 @@
 
       </div>
 
-
     </div>
 
   </div>
@@ -196,9 +191,8 @@
   <div id="Visualize" class="tabcontent">
     <h3>Visualize</h3>
     <p>TO-DO: ADD VISUALIZE TAB. STRATEGY PATERN I THINK?</p>
-    <input id="visualizeBtn" class="btn" type="button" value="Visualize Radar Chart" onclick="displayRadarChart()">
-    <canvas id="radarChart"></canvas>
-
+      <input id="visualizeBtn" class="btn" type="button" value="Visualize Radar Chart" onclick="displayRadarChart(); ">
+      <canvas id="radarChart"; height="125"></canvas>
   </div>
 
   <div id="Insights" class="tabcontent">

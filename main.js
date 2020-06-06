@@ -254,8 +254,9 @@ class ActivateEvent {
 function resetLocalStorage() {
   localStorage.clear()
 }
+
 function resetLSAndContainer() {
-  if (window.confirm('Are you sure you want to reset your data? This action cannot be undone.')) {
+  if (window.confirm('Are you sure you want to reset your data?\nThis action cannot be undone.')) {
     localStorage.clear();
     eventsContainer = [];
   }
@@ -282,8 +283,9 @@ function hrs_by_event_by_day(eventTitle, day, month, year) {
 }
 
 function displayRadarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHART
-  let radarChart = document.getElementById('radarChart').getContext('2d')
-  let chart = new Chart(radarChart, {
+  let radarChart = document.getElementById('radarChart').getContext('2d');
+
+  window.chart = new Chart(radarChart, {
     type: 'polarArea',
     data: {
       labels: ["downtime", "eating", "exercise", "family-time", "homework", "productive-work", "reading", "sleep", "social-time", "work"],
@@ -302,7 +304,10 @@ function displayRadarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHAR
         ]
       }],
     },
-    options: {}
+    options: {
+      responsive: true,
+      maintainAspectRatio: true
+    }
   })
 }
 
