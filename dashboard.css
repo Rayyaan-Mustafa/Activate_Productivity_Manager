@@ -51,6 +51,7 @@ h1{
 }
 
 .btn {
+  text-align: center;
   display: block;
   width: 10%;
   padding: 10px 10px;
@@ -63,6 +64,18 @@ h1{
 
 .btn:hover {
   background: #444;
+}
+
+
+#resetbtn{
+  background: #a64452;
+}
+#resetbtn:hover{
+  background: #853642;
+}
+
+#visualizeBtn {
+  width: fit-content;
 }
 
 select:hover { 

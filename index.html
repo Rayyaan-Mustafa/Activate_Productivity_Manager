@@ -7,6 +7,7 @@
   <script src="main.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 
 </head>
 
@@ -161,6 +162,9 @@
   <div id="Visualize" class="tabcontent">
     <h3>Visualize</h3>
     <p>TO-DO: ADD VISUALIZE TAB. STRATEGY PATERN I THINK?</p>
+    <input id="visualizeBtn" class="btn" type="button" value="Visualize Radar Chart" onclick="displayRadarChart()">
+    <canvas id="radarChart"></canvas>
+
   </div>
 
   <div id="Insights" class="tabcontent">
@@ -168,15 +172,18 @@
     <p>TO-DO: ADD PERSONALZIED INSIGHTS PAGE HERE. ALSO ADD BLOG SECITON OR SOMETHING???</p>
   </div>
 
+
   <div id="Settings" class="tabcontent">
     <h3>Settings</h3>
-    <p>insert settings page here</p>
+    <p>insert settings page here: needs reset button, decorator pattern to change colors, user's name</p>
+    <input id="resetbtn" class="btn" type="button" value="RESET" onclick="resetLSAndContainer()">
   </div>
 
   <div id="Activate" class="tabcontent">
     <h3>Activate Home</h3>
     <p>insert home stuff here</p>
   </div>
+
 
 </body>
 

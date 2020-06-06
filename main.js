@@ -229,14 +229,69 @@ class ActivateEvent {
 function resetLocalStorage() {
   localStorage.clear()
 }
+function resetLSAndContainer() {
+  if (window.confirm('Are you sure you want to reset your data? This action cannot be undone.')) {
+    localStorage.clear()
+    eventsContainer = [];
+  }
 
+}
+function total_hrs_by_event(eventTitle) {
+  let result = 0
+  eventsContainer.forEach(function (item) {
+    if (item.eventTitle == eventTitle) {
+      result += (item.endHour - item.startHour)
+    }
+  })
+  return result
+}
 
+function hrs_by_event_by_day(eventTitle, day, month, year) {
+  let result = 0;
+  eventsContainer.forEach(function (item) {
+    if (item.eventTitle == eventTitle && item.day == day && item.month == month && item.year == year) {
+      result += (item.endHour - item.startHour)
+    }
+  })
+  return result
+}
+
+function displayRadarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHART
+  let radarChart = document.getElementById('radarChart').getContext('2d')
+  let chart = new Chart(radarChart, {
+    type: 'polarArea',
+    data: {
+      labels: ["downtime", "eating", "exercise", "family-time", "homework", "productive-work", "reading", "sleep", "social-time", "work"],
+      datasets: [{
+        data: [
+          total_hrs_by_event("downtime"),
+          total_hrs_by_event("eating"),
+          total_hrs_by_event("exercise"),
+          total_hrs_by_event("family-time"),
+          total_hrs_by_event("homework"),
+          total_hrs_by_event("productive-work"),
+          total_hrs_by_event("reading"),
+          total_hrs_by_event("sleep"),
+          total_hrs_by_event("social-time"),
+          total_hrs_by_event("work")
+        ]
+      }],
+    },
+    options: {}
+  })
+}
+
+function displayLineChart() {
+  let lineChart = document.getElementById('lineChart').getContext('2d')
+}
+
+function displayPieChart() {
+
+}
 
 //page initialization stuff goes here
 
 var eventsContainer = [];//array for each object 
-createPreviousArray()
-
-
+createPreviousArray();
 
 
