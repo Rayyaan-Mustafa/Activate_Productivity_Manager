@@ -19,15 +19,15 @@ function openActivateTab(evt, ActivateTabName) {
 
 //calendar stuff
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-var month = 0;
-var year = 2020;
+var currmonth = 0;
+var curryear = 2020;
 var currday = 0;
 
 function loadCalendarMonth(newmonth) {
   if (newmonth == -1) {
     return;
   }
-  month = newmonth - 1;
+  currmonth = newmonth - 1;
   loadCalendarDays();
   document.getElementById("curMonth").innerHTML = months[newmonth - 1];
 }
@@ -36,7 +36,7 @@ function loadCalendarYear(newyear) {
   if (newyear == -1) {
     return;
   }
-  year = newyear;
+  curryear = newyear;
   loadCalendarDays();
   document.getElementById("curYear").innerHTML = newyear;
 }
@@ -45,8 +45,8 @@ function loadCalendarYear(newyear) {
 function loadCalendarDays() {
   document.getElementById("calendarDays").innerHTML = "";
 
-  var tmpDate = new Date(year, month, 0);
-  var num = daysInMonth(month, year);
+  var tmpDate = new Date(curryear, currmonth, 0);
+  var num = daysInMonth(currmonth, curryear);
   var dayofweek = tmpDate.getDay();       // find where to start calendar day of week
 
   for (var i = 0; i <= dayofweek; i++) {
@@ -87,7 +87,8 @@ function daysInMonth(month, year) {
 function loadEventList() {
   var result = "";
   for (var i = 0; i < getNumOfEvents(); i++) {
-    if (eventsContainer[i].day == currday) {
+    var item = eventsContainer[i];
+    if (item.day == currday && item.year == curryear && item.month == currmonth + 1) {
       result += eventsContainer[i].stringify();
     }
   }
@@ -100,11 +101,11 @@ function loadEventList() {
 
 window.addEventListener('load', function () {
   var date = new Date();
-  month = date.getMonth();
-  year = date.getFullYear();
+  currmonth = date.getMonth();
+  curryear = date.getFullYear();
   currday = date.getDay();
-  document.getElementById("curMonth").innerHTML = months[month];
-  document.getElementById("curYear").innerHTML = year;
+  document.getElementById("curMonth").innerHTML = months[currmonth];
+  document.getElementById("curYear").innerHTML = curryear;
   loadCalendarDays();
 });
 
