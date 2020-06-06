@@ -1,144 +1,203 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="dashboard.css">
-<script src="main.js"></script>
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="dashboard.css">
+  <script src="main.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 
 </head>
+
 <body>
 
 
-<div class="tab">
-  <script >
-    $('.alert').removeClass("show");
-    $('.alert').addClass("hide");
-  </script>
-  <h1 class="tablinks" onclick="openActivateTab(event, 'Activate')">Activate</h1>
-  <button class="tablinks" onclick="openActivateTab(event, 'Calendar')">Calendar</button>
-  <button class="tablinks" onclick="openActivateTab(event, 'Visualize')">Visualize</button>
-  <button class="tablinks" onclick="openActivateTab(event, 'Insights')">Insights</button>
-  <button class="tablinks" onclick="openActivateTab(event, 'Settings')">Settings</button>
-</div>
+  <div class="tab">
+    <h1 class="tablinks" onclick="openActivateTab(event, 'Activate')">Activate</h1>
+    <button class="tablinks" onclick="openActivateTab(event, 'Calendar')">Calendar</button>
+    <button class="tablinks" onclick="openActivateTab(event, 'Visualize')">Visualize</button>
+    <button class="tablinks" onclick="openActivateTab(event, 'Insights')">Insights</button>
+    <button class="tablinks" onclick="openActivateTab(event, 'Settings')">Settings</button>
+  </div>
 
-<div id="Calendar" class="tabcontent">
-  <h3>Calendar</h3>
-  <fieldset>
+  <div id="Calendar" class="tabcontent">
+    <h3>Calendar</h3>
+    <fieldset class="cal_fs">
       <legend>Please enter time and date of event</legend>
-        <div>
-          <label for="day">Day:</label>
-          <select id = "day">
-            <script type="text/javascript">
-              for(var i=1; i<=31; i++){
-                var select = document.getElementById("day");
-                var option = document.createElement("OPTION");
-                select.options.add(option);
-                option.text = i;
-                option.value = i;
-              }
-            </script>
-          </select>
-        </div>
-        <div>
-          <label for="month">Month:</label>
-          <select id="month">
-            <script type="text/javascript">
-              for(var i=1; i<=12; i++){
-                var select = document.getElementById("month");
-                var option = document.createElement("OPTION");
-                select.options.add(option);
-                option.text = i;
-                option.value = i;
-              }
-            </script>          
-          </select>
-        </div>
-        <div>
-          <label for="year">Year:</label>
-          <select id="year">
-            <script type="text/javascript">
-              for(var i=2020; i<=2025; i++){
-                var select = document.getElementById("year");
-                var option = document.createElement("OPTION");
-                select.options.add(option);
-                option.text = i;
-                option.value = i;
-              }
-            </script>          
-          </select>
-        </div>
-        <div>
-          <label for="startHour">Start Hour:</label>
-          <select id="startHour">
-            <script type="text/javascript">
-              for(var i=0; i<=24; i++){
-                var select = document.getElementById("startHour");
-                var option = document.createElement("OPTION");
-                select.options.add(option);
-                option.text = i;
-                option.value = i;
-              }
-            </script>          
-          </select>
-        </div>
-        <div>
-          <label for="endHour">End Hour:</label>
-          <select id="endHour">
-            <script type="text/javascript">
-              for(var i=0; i<=24; i++){
-                var select = document.getElementById("endHour");
-                var option = document.createElement("OPTION");
-                select.options.add(option);
-                option.text = i;
-                option.value = i;
-              }
-            </script>          
-          </select>
-        </div>
-        <div>
-          <label for="eventTitle">Event Title:</label>
-          <select id="eventTitle">
-            <option value="downtime">downtime</option>
-            <option value="eating">eating</option>
-            <option value="exercise">exercise</option>
-            <option value="family-time">family-time</option>  
-            <option value="homework">homework</option>
-            <option value="productive-work">productive-work</option>
-            <option value="reading">reading</option>
-            <option value="sleep">sleep</option>
-            <option value="social-time">social-time</option>
-            <option value="work">work</option>
-          </select>
-        </div>
-        <div>
-           <input class="btn" type="submit" value="Submit" onclick="submitInput(); alert()">
-        </div>
-        <div class="alert msg">
-          <span class="fas fa-check"></span>
-          <span class="msg">Event added!</span>
-        </div>
-  </fieldset>
+      <div>
+        <label for="day">Day:</label>
+        <select id="day">
+          <script type="text/javascript">
+            for (var i = 1; i <= 31; i++) {
+              var select = document.getElementById("day");
+              var option = document.createElement("OPTION");
+              select.options.add(option);
+              option.text = i;
+              option.value = i;
+            }
+          </script>
+        </select>
+      </div>
+      <div>
+        <label for="month">Month:</label>
+        <select id="month">
+          <script type="text/javascript">
+            for (var i = 1; i <= 12; i++) {
+              var select = document.getElementById("month");
+              var option = document.createElement("OPTION");
+              select.options.add(option);
+              option.text = i;
+              option.value = i;
+            }
+          </script>
+        </select>
+      </div>
+      <div>
+        <label for="year">Year:</label>
+        <select id="year">
+          <script type="text/javascript">
+            for (var i = 2020; i <= 2025; i++) {
+              var select = document.getElementById("year");
+              var option = document.createElement("OPTION");
+              select.options.add(option);
+              option.text = i;
+              option.value = i;
+            }
+          </script>
+        </select>
+      </div>
+      <div>
+        <label for="startHour">Start Hour:</label>
+        <select id="startHour">
+          <script type="text/javascript">
+            for (var i = 0; i <= 24; i++) {
+              var select = document.getElementById("startHour");
+              var option = document.createElement("OPTION");
+              select.options.add(option);
+              option.text = i;
+              option.value = i;
+            }
+          </script>
+        </select>
+      </div>
+      <div>
+        <label for="endHour">End Hour:</label>
+        <select id="endHour">
+          <script type="text/javascript">
+            for (var i = 0; i <= 24; i++) {
+              var select = document.getElementById("endHour");
+              var option = document.createElement("OPTION");
+              select.options.add(option);
+              option.text = i;
+              option.value = i;
+            }
+          </script>
+        </select>
+      </div>
+      <div>
+        <label for="eventTitle">Event Title:</label>
+        <select id="eventTitle">
+          <option value="downtime">downtime</option>
+          <option value="eating">eating</option>
+          <option value="exercise">exercise</option>
+          <option value="family-time">family-time</option>
+          <option value="homework">homework</option>
+          <option value="productive-work">productive-work</option>
+          <option value="reading">reading</option>
+          <option value="sleep">sleep</option>
+          <option value="social-time">social-time</option>
+          <option value="work">work</option>
+        </select>
+      </div>
+      <div>
+        <input class="btn" type="submit" value="Submit" onclick="submitInput(); alert()">
+      </div>
+      <div class="alert">
+        <span class="fas fa-check"></span>
+        <span class="msg">Event added!</span>
+      </div>
+      <br>
+    </fieldset>
 
-  <ul id="events">Events List</ul>
-  
+    <div class="cal_events" id="events">
+      <br>
+      Event List
+      <br>
+    </div>
+    <div class="cal_events" id="eventlist"></div>
 
-</div>
+    <br>
+    <div class="calendar" id="calendar">
+      <span id="curMonth"></span>
+      <select id="cal_month" onchange="loadCalendarMonth(this.value)">
+        <option value=-1> Select Month</option>
+        <option value=1>Jan</option>
+        <option value=2>Feb</option>
+        <option value=3>Mar</option>
+        <option value=4>Apr</option>
+        <option value=5>May</option>
+        <option value=6>Jun</option>
+        <option value=7>Jul</option>
+        <option value=8>Aug</option>
+        <option value=9>Sep</option>
+        <option value=10>Oct</option>
+        <option value=11>Nov</option>
+        <option value=12>Dec</option>
+      </select>
+
+      <select id="cal_year" onchange="loadCalendarYear(this.value)" class="curYear">
+        <option value=-1> Select Year</option>
+        <option value=2020>2020</option>
+        <option value=2021>2021</option>
+        <option value=2022>2022</option>
+        <option value=2023>2023</option>
+        <option value=2024>2024</option>
+        <option value=2025>2025</option>
+        <option value=2026>2026</option>
+        <option value=2027>2027</option>
+        <option value=2028>2028</option>
+        <option value=2029>2029</option>
+      </select>
+      <div class="curYear"> &nbsp;</div>
+      <span id="curYear" class="curYear"></span>
+
+      <div class="clear"></div>
+
+      <div class="calendar-dates">
+        <div class="days">
+          <div class="day label">SUN</div>
+          <div class="day label">MON</div>
+          <div class="day label">TUE</div>
+          <div class="day label">WED</div>
+          <div class="day label">THU</div>
+          <div class="day label">FRI</div>
+          <div class="day label">SAT</div>
+
+          <div class="clear"></div>
+
+          <br>
+          <div id="calendarDays" class="days">
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 
 <div id="Visualize" class="tabcontent">
   <h3>Visualize</h3>
   <p>TO-DO: ADD VISUALIZE TAB. STRATEGY PATERN I THINK?</p> 
     <input id="visualizeBtn" class="btn" type="button" value="Visualize Polar Area Chart" onclick="displayPolarChart()">
     <canvas id="PolarChart"></canvas>
-
 </div>
-
-<div id="Insights" class="tabcontent">
-  <h3>Insights</h3>
-  <p>TO-DO: ADD PERSONALZIED INSIGHTS PAGE HERE. ALSO ADD BLOG SECITON OR SOMETHING???</p>
-</div>
+  <div id="Insights" class="tabcontent">
+    <h3>Insights</h3>
+    <p>TO-DO: ADD PERSONALZIED INSIGHTS PAGE HERE. ALSO ADD BLOG SECITON OR SOMETHING???</p>
+  </div>
 
 <div id="Settings" class="tabcontent">
   <h3>Settings</h3>
@@ -147,10 +206,13 @@
   <input id="resetbtn" class="btn" type= "button"value="RESET" onclick="resetLSAndContainer()">
 </div>
 
-<div id="Activate" class="tabcontent">
-  <h3>Activate Home</h3>
-  <p>insert home stuff here</p>
-</div>
-   
+  <div id="Activate" class="tabcontent">
+    <h3>Activate Home</h3>
+    <p>insert home stuff here</p>
+  </div>
+
+
+
 </body>
+
 </html>

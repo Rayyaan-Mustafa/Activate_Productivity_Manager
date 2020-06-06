@@ -1,6 +1,6 @@
 body { 
   font-family: "Lato", sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 h1{
@@ -14,7 +14,7 @@ h1{
 
 /* Style the tab */
 .tab {
-  overflow: hidden;
+  overflow: auto;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
 }
@@ -45,6 +45,7 @@ h1{
 /* Style the tab content */
 .tabcontent {
   display: none;
+  overflow: auto;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
@@ -66,7 +67,6 @@ h1{
   background: #444;
 }
 
-
 #resetbtn{
   background: #a64452;
 }
@@ -82,14 +82,112 @@ select:hover {
   background: #fff;
 
  }
-
-.alert{
+ .cal_fs{
+  float:left;
+  width: 51%;
+ }
+ .cal_events{
+   float:left;
+   width: 51%;
+ }
+ .calendar {
+  right: 40px;
+  top: 238px;
+  position: absolute;
+  width: 40%;
+ }
+ .calendar .calendar-btn
+ {
+     float: left;
+     background-color: #24aeff;
+     color: white;
+     text-align: center;
+     font-size: 12pt;
+     padding-top: 5px;
+     padding-bottom: 5px;
+     position: relative;
+     width: 10%;
+     cursor: crosshair;
+     transition: .5s background-color;
+     border-radius: 5px;
+ }
+ 
+ .calendar .calendar-btn:hover{
+     background:#c0c0c0;
+ }
+ 
+ .calendar .curYear
+ {
+     float:right;
+ }
+ 
+ .calendar .calendar-dates .days .day
+ {
+     float:left;
+     width: 9.5%;
+     margin: 1%;
+     padding: 1%;
+     font-size:13pt;
+     text-align:center;
+     border-radius: 5px;
+     border: solid 1px #ddd;
+     cursor: crosshair;
+ }
+ .calendar .calendar-dates .days .day:hover{
+  background:#c0c0c0;
+}
+ 
+ .calendar .calendar-dates .days .day.blank
+ {
+     background-color: white;
+     border:none;
+ }
+ 
+ .calendar .calendar-dates .days .day.selected
+ {
+     background-color: #1caff6;
+     color: white;
+     cursor:pointer;
+     opacity: .5;
+     transition: .5s opacity;
+ }
+ 
+ .calendar .calendar-dates .days .day.selected:hover
+ {
+     opacity: 1;
+ }
+ 
+ .calendar .calendar-dates .days .day.label
+ {
+     height: 1px;
+     background-color: white;
+     color: black;
+     border:none;
+     font-weight:bold;
+ }
+ 
+ .clear{
+     clear:both;
+ }
+ 
+ @media only screen and (max-width: 480px) {
+     .calendar{
+         width: 100%;
+         margin: 0px;
+         margin: 0px;
+         box-sizing: border-box;
+         position: relative;
+         left: 0px;
+     }
+ }
+  
+ .alert{
   background: #d0ff9b;
   padding: 20px 40px;
   min-width: 100px;
   position: absolute;
   right: 0;
-  top: 10px;
+  top: 15px;
   border-radius: 4px;
   border-left: 8px solid #008d18f6;
   overflow: hidden;
@@ -131,3 +229,4 @@ select:hover {
   font-size: 18px;
   color: #008d18f6;
 }
+
