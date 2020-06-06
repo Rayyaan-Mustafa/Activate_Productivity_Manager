@@ -19,8 +19,6 @@ function openActivateTab(evt, ActivateTabName) {
 
 //calendar stuff
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-var startYear = 2010;
-var endYear = 2030;
 var month = 0;
 var year = 2020;
 
@@ -41,29 +39,6 @@ function loadCalendarYear(newyear) {
   loadCalendarDays();
   document.getElementById("curYear").innerHTML = newyear;
 }
-
-// function loadCalendarYears() {
-//   document.getElementById("years").innerHTML = "";
-
-//   for (var i = startYear; i <= endYear; i++) {
-//     var doc = document.createElement("div");
-//     doc.innerHTML = i;
-//     doc.classList.add("dropdown-item");
-
-//     doc.onclick = (function () {
-//       var selectedYear = i;
-//       return function () {
-//         year = selectedYear;
-//         document.getElementById("curYear").innerHTML = year;
-//         loadCalendarDays();
-//         return year;
-//       }
-//     })();
-
-//     document.getElementById("years").appendChild(doc);
-//   }
-// }
-
 
 
 function loadCalendarDays() {
