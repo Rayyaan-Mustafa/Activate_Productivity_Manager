@@ -19,14 +19,15 @@ function openActivateTab(evt, ActivateTabName) {
 
 //calendar stuff
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-var month = 0;
-var year = 2020;
+var currmonth = 0;
+var curryear = 2020;
+var currday = 0;
 
 function loadCalendarMonth(newmonth) {
   if (newmonth == -1) {
     return;
   }
-  month = newmonth - 1;
+  currmonth = newmonth - 1;
   loadCalendarDays();
   document.getElementById("curMonth").innerHTML = months[newmonth - 1];
 }
@@ -35,7 +36,7 @@ function loadCalendarYear(newyear) {
   if (newyear == -1) {
     return;
   }
-  year = newyear;
+  curryear = newyear;
   loadCalendarDays();
   document.getElementById("curYear").innerHTML = newyear;
 }
@@ -44,8 +45,8 @@ function loadCalendarYear(newyear) {
 function loadCalendarDays() {
   document.getElementById("calendarDays").innerHTML = "";
 
-  var tmpDate = new Date(year, month, 0);
-  var num = daysInMonth(month, year);
+  var tmpDate = new Date(curryear, currmonth, 0);
+  var num = daysInMonth(currmonth, curryear);
   var dayofweek = tmpDate.getDay();       // find where to start calendar day of week
 
   for (var i = 0; i <= dayofweek; i++) {
@@ -61,6 +62,14 @@ function loadCalendarDays() {
     d.id = "calendarday_" + i;
     d.className = "day";
     d.innerHTML = tmp;
+    d.onclick = (function () {
+      var selectedDay = tmp;
+      return function () {
+        currday = selectedDay;
+        loadEventList();
+        return currday;
+      }
+    })();
 
     document.getElementById("calendarDays").appendChild(d);
   }
@@ -75,12 +84,28 @@ function daysInMonth(month, year) {
   return d.getDate();
 }
 
+function loadEventList() {
+  var result = "";
+  for (var i = 0; i < getNumOfEvents(); i++) {
+    var item = eventsContainer[i];
+    if (item.day == currday && item.year == curryear && item.month == currmonth + 1) {
+      result += eventsContainer[i].stringify();
+    }
+  }
+  if (result == "") {
+    result = "Empty";
+  }
+  document.getElementById("eventlist").innerHTML = result;
+
+}
+
 window.addEventListener('load', function () {
   var date = new Date();
-  month = date.getMonth();
-  year = date.getFullYear();
-  document.getElementById("curMonth").innerHTML = months[month];
-  document.getElementById("curYear").innerHTML = year;
+  currmonth = date.getMonth();
+  curryear = date.getFullYear();
+  currday = date.getDay();
+  document.getElementById("curMonth").innerHTML = months[currmonth];
+  document.getElementById("curYear").innerHTML = curryear;
   loadCalendarDays();
 });
 
@@ -218,6 +243,10 @@ class ActivateEvent {
         return "N/A"
     }
   }
+  stringify() {
+
+    return "<br>" + this.eventTitle + "<br>from " + this.startHour + " to " + this.endHour + "<br>";
+  }
 }
 
 function resetLocalStorage() {
@@ -226,7 +255,7 @@ function resetLocalStorage() {
 
 function resetLSAndContainer() {
   if (window.confirm('Are you sure you want to reset your data? This action cannot be undone.')) {
-    localStorage.clear()
+    localStorage.clear();
     eventsContainer = [];
   }
 

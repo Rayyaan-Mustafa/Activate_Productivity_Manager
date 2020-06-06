@@ -1,6 +1,7 @@
 body { 
   font-family: "Lato", sans-serif;
   overflow-x: hidden;
+  overflow: auto;
 }
 
 h1{
@@ -14,7 +15,7 @@ h1{
 
 /* Style the tab */
 .tab {
-  overflow: hidden;
+  overflow: auto;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
 }
@@ -45,7 +46,7 @@ h1{
 /* Style the tab content */
 .tabcontent {
   display: none;
-  overflow: hidden;
+  overflow: auto;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
@@ -106,13 +107,13 @@ select:hover {
      padding-bottom: 5px;
      position: relative;
      width: 10%;
-     cursor: pointer;
+     cursor: crosshair;
      transition: .5s background-color;
      border-radius: 5px;
  }
  
  .calendar .calendar-btn:hover{
-     background-color:#1f71a1;
+     background:#c0c0c0;
  }
  
  .calendar .curYear
@@ -130,7 +131,11 @@ select:hover {
      text-align:center;
      border-radius: 5px;
      border: solid 1px #ddd;
+     cursor: crosshair;
  }
+ .calendar .calendar-dates .days .day:hover{
+  background:#c0c0c0;
+}
  
  .calendar .calendar-dates .days .day.blank
  {
@@ -237,4 +242,22 @@ select:hover {
   padding: 0 20px;
   font-size: 18px;
   color: #ce8500;
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
