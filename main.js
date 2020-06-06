@@ -12,7 +12,7 @@ function openActivateTab(evt, ActivateTabName) {
   evt.currentTarget.className += " active";
   if (ActivateTabName == 'Calendar') {
     loadCalendarDays();
-    //loadCalendarYears();
+    loadEventList();
   }
 }
 
@@ -93,8 +93,9 @@ function loadEventList() {
     }
   }
   if (result == "") {
-    result = "Empty";
+    result = "<br>Empty";
   }
+  document.getElementById("events").innerHTML = "<br>Events for " + months[currmonth] + " " + currday + "<br>";
   document.getElementById("eventlist").innerHTML = result;
 
 }
@@ -107,6 +108,7 @@ window.addEventListener('load', function () {
   document.getElementById("curMonth").innerHTML = months[currmonth];
   document.getElementById("curYear").innerHTML = curryear;
   loadCalendarDays();
+  loadEventList();
 });
 
 
