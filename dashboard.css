@@ -45,6 +45,7 @@ h1{
 /* Style the tab content */
 .tabcontent {
   display: none;
+  overflow: hidden;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
@@ -82,8 +83,101 @@ select:hover {
   background: #fff;
 
  }
-
-.alert{
+ .cal_fs{
+  float:left;
+  width: 51%;
+ }
+ .cal_events{
+   float:left;
+   width: 50%;
+ }
+ .calendar {
+  right: 40px;
+  position: absolute;
+  width: 40%;
+ }
+ .calendar .calendar-btn
+ {
+     float: left;
+     background-color: #24aeff;
+     color: white;
+     text-align: center;
+     font-size: 12pt;
+     padding-top: 5px;
+     padding-bottom: 5px;
+     position: relative;
+     width: 10%;
+     cursor: pointer;
+     transition: .5s background-color;
+     border-radius: 5px;
+ }
+ 
+ .calendar .calendar-btn:hover{
+     background-color:#1f71a1;
+ }
+ 
+ .calendar .curYear
+ {
+     float:right;
+ }
+ 
+ .calendar .calendar-dates .days .day
+ {
+     float:left;
+     width: 9.5%;
+     margin: 1%;
+     padding: 1%;
+     font-size:13pt;
+     text-align:center;
+     border-radius: 5px;
+     border: solid 1px #ddd;
+ }
+ 
+ .calendar .calendar-dates .days .day.blank
+ {
+     background-color: white;
+     border:none;
+ }
+ 
+ .calendar .calendar-dates .days .day.selected
+ {
+     background-color: #1caff6;
+     color: white;
+     cursor:pointer;
+     opacity: .5;
+     transition: .5s opacity;
+ }
+ 
+ .calendar .calendar-dates .days .day.selected:hover
+ {
+     opacity: 1;
+ }
+ 
+ .calendar .calendar-dates .days .day.label
+ {
+     height: 1px;
+     background-color: white;
+     color: black;
+     border:none;
+     font-weight:bold;
+ }
+ 
+ .clear{
+     clear:both;
+ }
+ 
+ @media only screen and (max-width: 480px) {
+     .calendar{
+         width: 100%;
+         margin: 0px;
+         margin: 0px;
+         box-sizing: border-box;
+         position: relative;
+         left: 0px;
+     }
+ }
+  
+ .alert{
   background: #d0ff9b;
   padding: 20px 40px;
   min-width: 100px;

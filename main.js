@@ -10,78 +10,58 @@ function openActivateTab(evt, ActivateTabName) {
   }
   document.getElementById(ActivateTabName).style.display = "block";
   evt.currentTarget.className += " active";
+  if (ActivateTabName == 'Calendar') {
+    loadCalendarDays();
+    //loadCalendarYears();
+  }
 }
 
 
 //calendar stuff
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var month = 0;
+var year = 2020;
 
-function drawCalendarMonths() {
-  for (var i = 0; i < months.length; i++) {
-    var doc = document.createElement("div");
-    doc.innerHTML = months[i];
-    doc.classList.add("dropdown-item");
-
-    doc.onclick = (function () {
-      var selectedMonth = i;
-      return function () {
-        month = selectedMonth;
-        document.getElementById("curMonth").innerHTML = months[month];
-        loadCalendarDays();
-        return month;
-      }
-    })();
-
-    document.getElementById("months").appendChild(doc);
+function loadCalendarMonth(newmonth) {
+  if (newmonth == -1) {
+    return;
   }
+  month = newmonth - 1;
+  loadCalendarDays();
+  document.getElementById("curMonth").innerHTML = months[newmonth - 1];
 }
-function loadYears() {
-  // whichever date range makes the most sense
-  var startYear = 1900;
-  var endYear = 2022;
 
-  for (var i = startYear; i <= endYear; i++) {
-    var doc = document.createElement("div");
-    doc.innerHTML = i;
-    doc.classList.add("dropdown-item");
-
-    doc.onclick = (function () {
-      var selectedYear = i;
-      return function () {
-        year = selectedYear;
-        document.getElementById("curYear").innerHTML = year;
-        loadCalendarDays();
-        return year;
-      }
-    })();
-
-    document.getElementById("years").appendChild(doc);
+function loadCalendarYear(newyear) {
+  if (newyear == -1) {
+    return;
   }
+  year = newyear;
+  loadCalendarDays();
+  document.getElementById("curYear").innerHTML = newyear;
 }
-function daysInMonth(month, year) {
-  let d = new Date(year, month + 1, 0);
-  return d.getDate();
-}
+
 
 function loadCalendarDays() {
   document.getElementById("calendarDays").innerHTML = "";
 
   var tmpDate = new Date(year, month, 0);
   var num = daysInMonth(month, year);
-  var dayofweek = tmpDate.getDay();
+  var dayofweek = tmpDate.getDay();       // find where to start calendar day of week
+
   for (var i = 0; i <= dayofweek; i++) {
     var d = document.createElement("div");
     d.classList.add("day");
     d.classList.add("blank");
     document.getElementById("calendarDays").appendChild(d);
   }
-  // render the rest of the days
+
   for (var i = 0; i < num; i++) {
     var tmp = i + 1;
     var d = document.createElement("div");
     d.id = "calendarday_" + i;
     d.className = "day";
     d.innerHTML = tmp;
+
     document.getElementById("calendarDays").appendChild(d);
   }
 
@@ -89,6 +69,20 @@ function loadCalendarDays() {
   clear.className = "clear";
   document.getElementById("calendarDays").appendChild(clear);
 }
+
+function daysInMonth(month, year) {
+  var d = new Date(year, month + 1, 0);
+  return d.getDate();
+}
+
+window.addEventListener('load', function () {
+  var date = new Date();
+  month = date.getMonth();
+  year = date.getFullYear();
+  document.getElementById("curMonth").innerHTML = months[month];
+  document.getElementById("curYear").innerHTML = year;
+  loadCalendarDays();
+});
 
 
 // function createDropdown(identification, count) { 
