@@ -78,6 +78,10 @@ h1{
   width: fit-content;
 }
 
+#insightBtn {
+  width: fit-content;
+}
+
 select:hover { 
   background: #fff;
 
