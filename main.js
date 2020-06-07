@@ -10,10 +10,12 @@ function openActivateTab(evt, ActivateTabName) {
   }
   document.getElementById(ActivateTabName).style.display = "block";
   evt.currentTarget.className += " active";
-  if (ActivateTabName == 'Calendar') {
-    loadCalendarDays();
-    loadEventList();
-  }
+  // DO we even need this? not even the right syntax **********************************************
+  // if (ActivateTabName == 'Calendar') {
+  //   loadCalendarDays();
+  //   loadEventList();
+  // }
+  document.querySelector('#insightBtn').value = "Generate insights for "+ months[currmonth] + " " + currday + ", " + curryear;
 }
 
 
@@ -260,7 +262,8 @@ function resetLSAndContainer() {
     localStorage.clear();
     eventsContainer = [];
   }
-
+  displayRadarChart();
+  clearinsight();
 }
 function total_hrs_by_event(eventTitle) {
   let result = 0
@@ -317,6 +320,284 @@ function displayLineChart() {
 
 function displayPieChart() {
 
+}
+
+class insightManager{
+  constructor(){
+    this._strategies = [];
+  }
+  addStrategy(strategy) {
+    this._strategies =  [...this._strategies, strategy];
+  }
+  getStrategy(name){
+    return this._strategies.find(strategy => strategy._name === name);
+  }
+}
+
+class Strategy{
+  constructor(name, handeler){
+    this._name = name;
+    this._handeler = handeler;
+  }
+  doAction(){
+    this._handeler();
+  }
+}
+
+doActionDiet = () => {
+  var eatingTime = 0;
+  var end = 0;
+  var insight = "";
+  for (var i = 0; i < getNumOfEvents(); i++) {
+    var item = eventsContainer[i];
+    //console.log(item);
+    console.log(currday + " " + currmonth + " " + curryear);
+    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth +1 
+      && parseInt(item.year, 10) === curryear && item.eventTitle === 'eating') {
+      if (item.startHour === "24") {
+        end = "24" + item.endHour;
+      }
+      else {
+        end = item.endHour;
+      }
+      eatingTime += Math.abs(item.startHour - end);
+    }
+  }
+
+  if(eatingTime < "2"){
+    insight = "Eating is important. Consider spending more time eating."
+  }
+  else if(eatingTime > "3")
+  {
+    insight = "Eating is taking a considerable amount of time. Consider cutting it down."
+  }
+  else{
+    insight = "Looks good!";
+  }
+
+  document.getElementById("Diet Insights").innerHTML = "<br>Insights for Eating</br>";
+  document.getElementById("Dtime").innerHTML = "Time spent eating: " + eatingTime + " hours";
+  document.getElementById("Dinsight").innerHTML = insight;
+}
+
+doActionWork = () =>{
+  var workTime = 0;
+  var productiveWork = 0;
+  var end = 0;
+  var insight = "";
+  var insight2 = "";
+  for (var i = 0; i < getNumOfEvents(); i++) {
+    var item = eventsContainer[i];
+    //console.log(item);
+    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth +1 
+      && parseInt(item.year, 10) === curryear && item.eventTitle === 'work'){
+      if (item.startHour === "24") {
+        end = "24" + item.endHour;
+      }
+      else {
+        end = item.endHour;
+      }
+      workTime += Math.abs(item.startHour - end);
+    } 
+    else if(parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth +1 
+      && parseInt(item.year, 10) === curryear && item.eventTitle === 'productive-work'){
+      if (item.startHour === "24") {
+        end = "24" + item.endHour;
+      }
+      else {
+        end = item.endHour;
+      }
+      productiveWork += Math.abs(item.startHour - end);
+    }
+  }
+
+  if(workTime <= "2"){
+    insight = "Don't you have something to do?"
+  }
+  else if(workTime >= "10")
+  {
+    insight = "Work is taking a considerable amount of time. Remember to take breaks."
+  }
+  else{
+    insight = "Looks good!";
+  }
+
+  if(productiveWork <= "2"){
+    insight2 = "Stop slacking!"
+  }
+  else if(productiveWork >= "10")
+  {
+    insight2 = "Productive Work is taking a considerable amount of time. Very nice but remember to take breaks."
+  }
+  else{
+    insight2 = "Looks good!";
+  }
+
+  document.getElementById("Work Insights").innerHTML = "<br>Insights for Working</br>";
+  document.getElementById("Wtime").innerHTML = "Time spent working: " + workTime + " hours";
+  document.getElementById("Winsight").innerHTML = insight;
+  document.getElementById("Ptime").innerHTML = "Time spent on productive work: " + productiveWork + " hours";
+  document.getElementById("Pinsight").innerHTML = insight2;
+}
+
+doActionSleep = () => {
+  var sleepTime = 0;
+  var end = 0;
+  var insight = "";
+  for (var i = 0; i < getNumOfEvents(); i++) {
+    var item = eventsContainer[i];
+    //console.log(item);
+    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth+1 
+      && parseInt(item.year, 10) === curryear && item.eventTitle === 'sleep') {
+      if (item.startHour === "24") {
+        end = "24" + item.endHour;
+      }
+      else {
+        end = item.endHour;
+      }
+      sleepTime += Math.abs(item.startHour - end);
+    }
+  }
+
+  if(sleepTime < "7"){
+    insight = "Sleep is important. Consider spending more time sleeping."
+  }
+  else if(sleepTime >= "12")
+  {
+    insight = "Eating is taking a considerable amount of time. Consider cutting it down."
+  }
+  else{
+    insight = "Looks good!";
+  }
+
+  document.getElementById("Sleep Insights").innerHTML = "<br>Insights for Sleeping</br>";
+  document.getElementById("Stime").innerHTML = "Time spent Sleeping: " + sleepTime + " hours";
+  document.getElementById("Sinsight").innerHTML = insight;
+}
+
+doActionRelax = () => {
+  var downTime = 0;
+  var end = 0;
+  var insight = "";
+  for (var i = 0; i < getNumOfEvents(); i++) {
+    var item = eventsContainer[i];
+    //console.log(item);
+    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth+1 
+      && parseInt(item.year, 10) === curryear && item.eventTitle === 'downtime') {
+      if (item.startHour === "24") {
+        end = "24" + item.endHour;
+      }
+      else {
+        end = item.endHour;
+      }
+      downTime += Math.abs(item.startHour - end);
+    }
+  }
+
+  if(downTime < "2"){
+    insight = "Relaxing is important. Consider spending more time relaxing."
+  }
+  else if(downTime >= "12")
+  {
+    insight = "Downtime is taking a considerable amount of time. Consider cutting it down to stay productive."
+  }
+  else{
+    insight = "Looks good!";
+  }
+
+  document.getElementById("Relax Insights").innerHTML = "<br>Insights for Downtime</br>";
+  document.getElementById("Rtime").innerHTML = "Time spent in downtime: " + downTime + " hours";
+  document.getElementById("Rinsight").innerHTML = insight;
+}
+
+
+doActionExercise = () => {
+  var exerciseTime = 0;
+  var end = 0;
+  var insight = "";
+  for (var i = 0; i < getNumOfEvents(); i++) {
+    var item = eventsContainer[i];
+    console.log(item);
+    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth+1 
+      && parseInt(item.year, 10) === curryear && item.eventTitle === 'exercise') {
+      if (item.startHour === "24") {
+        end = "24" + item.endHour;
+      }
+      else {
+        end = item.endHour;
+      }
+      exerciseTime += Math.abs(item.startHour - end);
+    }
+  }
+
+  if(exerciseTime <= "0"){
+    insight = "Exercise is important. Consider spending some time exercising to stay healthy."
+  }
+  else if(exerciseTime > "5")
+  {
+    insight = "Exercise is good but is taking a considerable amount of time. Consider cutting it down."
+  }
+  else{
+    insight = "Looks good!";
+  }
+
+  document.getElementById("Exercise Insights").innerHTML = "<br>Insights for Exercising</br>";
+  document.getElementById("Etime").innerHTML = "Time spent exercising: " + exerciseTime + " hours";
+  document.getElementById("Einsight").innerHTML = insight;
+}
+
+function insightClient(){
+  const stratM = new insightManager();
+  const strategy1 = new Strategy('insightDiet', doActionDiet);
+  const strategy2 = new Strategy('insightWork', doActionWork);
+  const strategy3 = new Strategy('insightSleep', doActionSleep);
+  const strategy4 = new Strategy('insightRelax', doActionRelax);
+  const strategy5 = new Strategy('insightExercise', doActionExercise);
+
+  stratM.addStrategy(strategy1);
+  stratM.addStrategy(strategy2);
+  stratM.addStrategy(strategy3);
+  stratM.addStrategy(strategy4);
+  stratM.addStrategy(strategy5);
+
+  const strategyA = stratM.getStrategy('insightDiet');
+  strategyA.doAction();
+
+  const strategyB = stratM.getStrategy('insightWork');
+  strategyB.doAction();
+
+  const strategyC = stratM.getStrategy('insightSleep');
+  strategyC.doAction();
+  
+  const strategyD = stratM.getStrategy('insightRelax');
+  strategyD.doAction();
+
+  const strategyE = stratM.getStrategy('insightExercise');
+  strategyE.doAction();
+}
+
+function clearinsight(){
+  document.getElementById("Diet Insights").innerHTML = "";
+  document.getElementById("Dtime").innerHTML = "";
+  document.getElementById("Dinsight").innerHTML = "";
+
+  document.getElementById("Work Insights").innerHTML = "";
+  document.getElementById("Wtime").innerHTML = "";
+  document.getElementById("Winsight").innerHTML = "";
+  document.getElementById("Ptime").innerHTML = "";
+  document.getElementById("Pinsight").innerHTML = "";
+
+  document.getElementById("Sleep Insights").innerHTML = "";
+  document.getElementById("Stime").innerHTML = "";
+  document.getElementById("Sinsight").innerHTML = "";
+
+  document.getElementById("Relax Insights").innerHTML = "";
+  document.getElementById("Rtime").innerHTML = "";
+  document.getElementById("Rinsight").innerHTML = "";
+
+  document.getElementById("Exercise Insights").innerHTML = "";
+  document.getElementById("Etime").innerHTML = "";
+  document.getElementById("Einsight").innerHTML = "";
 }
 
 //page initialization stuff goes here
