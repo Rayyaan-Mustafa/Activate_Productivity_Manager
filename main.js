@@ -1,3 +1,9 @@
+//calendar stuff
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var currmonth = 0;
+var curryear = 2020;
+var currday = 0;
+
 function openActivateTab(evt, ActivateTabName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -10,20 +16,14 @@ function openActivateTab(evt, ActivateTabName) {
   }
   document.getElementById(ActivateTabName).style.display = "block";
   evt.currentTarget.className += " active";
-  // DO we even need this? not even the right syntax **********************************************
-  // if (ActivateTabName == 'Calendar') {
-  //   loadCalendarDays();
-  //   loadEventList();
-  // }
+  // don't think this does anything
+  if (ActivateTabName == 'Calendar') {
+    loadCalendarDays();
+    loadEventList();
+  }
+  //
   document.querySelector('#insightBtn').value = "Generate insights for "+ months[currmonth] + " " + currday + ", " + curryear;
 }
-
-
-//calendar stuff
-var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-var currmonth = 0;
-var curryear = 2020;
-var currday = 0;
 
 function loadCalendarMonth(newmonth) {
   if (newmonth == -1) {
@@ -95,7 +95,7 @@ function loadEventList() {
     }
   }
   if (result == "") {
-    result = "<br>Empty";
+    result = "<br>Empty</br>";
   }
   document.getElementById("events").innerHTML = "<br>Events for " + months[currmonth] + " " + currday + "<br>";
   document.getElementById("eventlist").innerHTML = result;
@@ -262,14 +262,21 @@ function resetLSAndContainer() {
     localStorage.clear();
     eventsContainer = [];
   }
-  displayRadarChart();
+  if(window.chart) {window.chart.destroy();} 
   clearinsight();
 }
 function total_hrs_by_event(eventTitle) {
   let result = 0
+  var start = 0;
+  var end = 0;
   eventsContainer.forEach(function (item) {
     if (item.eventTitle == eventTitle) {
-      result += (item.endHour - item.startHour)
+      start = parseInt(item.startHour, 10);
+      end = parseInt(item.endHour, 10);
+      if (start > end) {
+        end = 24 + end;
+      }
+      result += Math.abs(end - start);
     }
   })
   return result
@@ -277,15 +284,23 @@ function total_hrs_by_event(eventTitle) {
 
 function hrs_by_event_by_day(eventTitle, day, month, year) {
   let result = 0;
+  var start = 0;
+  var end = 0;
   eventsContainer.forEach(function (item) {
     if (item.eventTitle == eventTitle && item.day == day && item.month == month && item.year == year) {
-      result += (item.endHour - item.startHour)
+      start = parseInt(item.startHour, 10);
+      end = parseInt(item.endHour, 10);
+      if (start > end) {
+        end = 24 + end;
+      }
+      result += Math.abs(end - start);
     }
   })
   return result
 }
 
 function displayPolarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHART
+  if(window.chart) {window.chart.destroy();} 
   let radarChart = document.getElementById('PolarChart').getContext('2d');
 
   window.chart = new Chart(radarChart, {
@@ -354,11 +369,10 @@ doActionDiet = () => {
     console.log(currday + " " + currmonth + " " + curryear);
     if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth +1 
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'eating') {
-      if (item.startHour === "24") {
-        end = "24" + item.endHour;
-      }
-      else {
-        end = item.endHour;
+      start = parseInt(item.startHour, 10);
+      end = parseInt(item.endHour, 10);
+      if (start > end) {
+        end = 24 + end;
       }
       eatingTime += Math.abs(item.startHour - end);
     }
@@ -383,6 +397,7 @@ doActionDiet = () => {
 doActionWork = () =>{
   var workTime = 0;
   var productiveWork = 0;
+  var start = 0;
   var end = 0;
   var insight = "";
   var insight2 = "";
@@ -391,21 +406,19 @@ doActionWork = () =>{
     //console.log(item);
     if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth +1 
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'work'){
-      if (item.startHour === "24") {
-        end = "24" + item.endHour;
-      }
-      else {
-        end = item.endHour;
+      start = parseInt(item.startHour, 10);
+      end = parseInt(item.endHour, 10);
+      if (start > end) {
+        end = 24 + end;
       }
       workTime += Math.abs(item.startHour - end);
     } 
     else if(parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth +1 
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'productive-work'){
-      if (item.startHour === "24") {
-        end = "24" + item.endHour;
-      }
-      else {
-        end = item.endHour;
+      start = parseInt(item.startHour, 10);
+      end = parseInt(item.endHour, 10);
+      if (start > end) {
+        end = 24 + end;
       }
       productiveWork += Math.abs(item.startHour - end);
     }
@@ -442,6 +455,7 @@ doActionWork = () =>{
 
 doActionSleep = () => {
   var sleepTime = 0;
+  var start = 0;
   var end = 0;
   var insight = "";
   for (var i = 0; i < getNumOfEvents(); i++) {
@@ -449,11 +463,10 @@ doActionSleep = () => {
     //console.log(item);
     if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth+1 
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'sleep') {
-      if (item.startHour === "24") {
-        end = "24" + item.endHour;
-      }
-      else {
-        end = item.endHour;
+      start = parseInt(item.startHour, 10);
+      end = parseInt(item.endHour, 10);
+      if (start > end) {
+        end = 24 + end;
       }
       sleepTime += Math.abs(item.startHour - end);
     }
@@ -477,6 +490,7 @@ doActionSleep = () => {
 
 doActionRelax = () => {
   var downTime = 0;
+  var start = 0;
   var end = 0;
   var insight = "";
   for (var i = 0; i < getNumOfEvents(); i++) {
@@ -484,12 +498,11 @@ doActionRelax = () => {
     //console.log(item);
     if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth+1 
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'downtime') {
-      if (item.startHour === "24") {
-        end = "24" + item.endHour;
-      }
-      else {
-        end = item.endHour;
-      }
+        start = parseInt(item.startHour, 10);
+        end = parseInt(item.endHour, 10);
+        if (start > end) {
+          end = 24 + end;
+        }
       downTime += Math.abs(item.startHour - end);
     }
   }
@@ -513,19 +526,22 @@ doActionRelax = () => {
 
 doActionExercise = () => {
   var exerciseTime = 0;
+  var start = 0;
   var end = 0;
   var insight = "";
   for (var i = 0; i < getNumOfEvents(); i++) {
     var item = eventsContainer[i];
-    console.log(item);
+    // console.log(item);
     if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth+1 
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'exercise') {
-      if (item.startHour === "24") {
-        end = "24" + item.endHour;
+      start = parseInt(item.startHour, 10);
+      end = parseInt(item.endHour, 10);
+      if (start > end) {
+        end = 24 + end;
       }
-      else {
-        end = item.endHour;
-      }
+      // console.log(parseInt(item.startHour,10));
+      // console.log(parseInt(item.endHour,10));
+      // console.log(end);
       exerciseTime += Math.abs(item.startHour - end);
     }
   }
@@ -535,7 +551,7 @@ doActionExercise = () => {
   }
   else if(exerciseTime > "5")
   {
-    insight = "Exercise is good but is taking a considerable amount of time. Consider cutting it down."
+    insight = "Exercise is good but it's taking a considerable amount of time. Consider cutting it down."
   }
   else{
     insight = "Looks good!";
