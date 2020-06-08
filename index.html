@@ -8,6 +8,7 @@
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+  <script src=https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js></script>
 
 </head>
 
@@ -111,7 +112,8 @@
         </select>
       </div>
       <div>
-        <input class="btn" type="submit" value="Submit" onclick="submitInput(); alert()">
+        <input class="btn" type="submit" value="Submit" 
+            onclick="submitInput(); alert(); loadEventList();">
       </div>
       <div class="alert">
         <span class="fas fa-check"></span>
@@ -190,7 +192,8 @@
 <div id="Visualize" class="tabcontent">
   <h3>Visualize</h3>
   <p>TO-DO: ADD VISUALIZE TAB. STRATEGY PATERN I THINK?</p> 
-    <input id="visualizeBtn" class="btn" type="button" value="Visualize Polar Area Chart" onclick="displayPolarChart()">
+    <input id="visualizeBtn" class="btn" type="button" value="Visualize Polar Area Chart" 
+        onclick="displayPolarChart();">
     <canvas id="PolarChart"></canvas>
 </div>
 

@@ -607,6 +607,11 @@ function saveSettings(){
     document.querySelector('#homeName').innerHTML = localStorage.getItem("name")
 
 }
+
+function percentProductive(){
+  downtimehours
+  return Math.round((24*7-downtimehours)/(24*7))
+}
 //page initialization stuff goes here
 
 var eventsContainer = [];//array for each object 
