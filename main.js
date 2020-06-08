@@ -879,6 +879,9 @@ function saveSettings() {
 
 function percentProductive() {
   let downtimehours = total_hrs_by_event("downtime")
+  if(total_hrs() === 0 ){
+    return 0
+  }
   return Math.round((total_hrs() - downtimehours) / total_hrs()*100)
 }
 //page initialization stuff goes here
