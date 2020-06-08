@@ -15,7 +15,7 @@ function openActivateTab(evt, ActivateTabName) {
   //   loadCalendarDays();
   //   loadEventList();
   // }
-  document.querySelector('#insightBtn').value = "Generate insights for "+ months[currmonth] + " " + currday + ", " + curryear;
+  document.querySelector('#insightBtn').value = "Generate insights for " + months[currmonth] + " " + currday + ", " + curryear;
 }
 
 
@@ -91,7 +91,7 @@ function loadEventList() {
   for (var i = 0; i < getNumOfEvents(); i++) {
     var item = eventsContainer[i];
     if (item.day == currday && item.year == curryear && item.month == currmonth + 1) {
-      result += eventsContainer[i].stringify();
+      result += item.stringify();
     }
   }
   if (result == "") {
@@ -220,6 +220,35 @@ function createPreviousArray() {//on page refresh eventsContainer is emptied, so
 
 }
 
+//composite components
+class ActivateYear {
+  constructor(year) {
+    this.year = year;
+    this.numMonths = 0;
+    this.months = [];
+  }
+  addComponent(month) {
+    this.months.push(month);
+    this.numMonths++;
+  }
+}
+class ActivateMonth {
+  constructor(month) {
+    this.month = month;
+    this
+  }
+  addComponent(day) {
+    this.days.push(day);
+  }
+}
+class ActivateDay {
+  constructor(day) {
+    this.day = day;
+  }
+  addComponent(event) {
+    this.events.push(event);
+  }
+}
 class ActivateEvent {
   constructor(day, month, year, startHour, endHour, eventTitle) {
     this.day = day;
@@ -248,7 +277,6 @@ class ActivateEvent {
     }
   }
   stringify() {
-
     return "<br>" + this.eventTitle + "<br>from " + this.startHour + " to " + this.endHour + "<br>";
   }
 }
@@ -322,24 +350,24 @@ function displayPieChart() {
 
 }
 
-class insightManager{
-  constructor(){
+class insightManager {
+  constructor() {
     this._strategies = [];
   }
   addStrategy(strategy) {
-    this._strategies =  [...this._strategies, strategy];
+    this._strategies = [...this._strategies, strategy];
   }
-  getStrategy(name){
+  getStrategy(name) {
     return this._strategies.find(strategy => strategy._name === name);
   }
 }
 
-class Strategy{
-  constructor(name, handeler){
+class Strategy {
+  constructor(name, handeler) {
     this._name = name;
     this._handeler = handeler;
   }
-  doAction(){
+  doAction() {
     this._handeler();
   }
 }
@@ -352,7 +380,7 @@ doActionDiet = () => {
     var item = eventsContainer[i];
     //console.log(item);
     console.log(currday + " " + currmonth + " " + curryear);
-    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth +1 
+    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth + 1
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'eating') {
       if (item.startHour === "24") {
         end = "24" + item.endHour;
@@ -364,14 +392,13 @@ doActionDiet = () => {
     }
   }
 
-  if(eatingTime < "2"){
+  if (eatingTime < "2") {
     insight = "Eating is important. Consider spending more time eating."
   }
-  else if(eatingTime > "3")
-  {
+  else if (eatingTime > "3") {
     insight = "Eating is taking a considerable amount of time. Consider cutting it down."
   }
-  else{
+  else {
     insight = "Looks good!";
   }
 
@@ -380,7 +407,7 @@ doActionDiet = () => {
   document.getElementById("Dinsight").innerHTML = insight;
 }
 
-doActionWork = () =>{
+doActionWork = () => {
   var workTime = 0;
   var productiveWork = 0;
   var end = 0;
@@ -389,8 +416,8 @@ doActionWork = () =>{
   for (var i = 0; i < getNumOfEvents(); i++) {
     var item = eventsContainer[i];
     //console.log(item);
-    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth +1 
-      && parseInt(item.year, 10) === curryear && item.eventTitle === 'work'){
+    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth + 1
+      && parseInt(item.year, 10) === curryear && item.eventTitle === 'work') {
       if (item.startHour === "24") {
         end = "24" + item.endHour;
       }
@@ -398,9 +425,9 @@ doActionWork = () =>{
         end = item.endHour;
       }
       workTime += Math.abs(item.startHour - end);
-    } 
-    else if(parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth +1 
-      && parseInt(item.year, 10) === curryear && item.eventTitle === 'productive-work'){
+    }
+    else if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth + 1
+      && parseInt(item.year, 10) === curryear && item.eventTitle === 'productive-work') {
       if (item.startHour === "24") {
         end = "24" + item.endHour;
       }
@@ -411,25 +438,23 @@ doActionWork = () =>{
     }
   }
 
-  if(workTime <= "2"){
+  if (workTime <= "2") {
     insight = "Don't you have something to do?"
   }
-  else if(workTime >= "10")
-  {
+  else if (workTime >= "10") {
     insight = "Work is taking a considerable amount of time. Remember to take breaks."
   }
-  else{
+  else {
     insight = "Looks good!";
   }
 
-  if(productiveWork <= "2"){
+  if (productiveWork <= "2") {
     insight2 = "Stop slacking!"
   }
-  else if(productiveWork >= "10")
-  {
+  else if (productiveWork >= "10") {
     insight2 = "Productive Work is taking a considerable amount of time. Very nice but remember to take breaks."
   }
-  else{
+  else {
     insight2 = "Looks good!";
   }
 
@@ -447,7 +472,7 @@ doActionSleep = () => {
   for (var i = 0; i < getNumOfEvents(); i++) {
     var item = eventsContainer[i];
     //console.log(item);
-    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth+1 
+    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth + 1
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'sleep') {
       if (item.startHour === "24") {
         end = "24" + item.endHour;
@@ -459,14 +484,13 @@ doActionSleep = () => {
     }
   }
 
-  if(sleepTime < "7"){
+  if (sleepTime < "7") {
     insight = "Sleep is important. Consider spending more time sleeping."
   }
-  else if(sleepTime >= "12")
-  {
+  else if (sleepTime >= "12") {
     insight = "Eating is taking a considerable amount of time. Consider cutting it down."
   }
-  else{
+  else {
     insight = "Looks good!";
   }
 
@@ -482,7 +506,7 @@ doActionRelax = () => {
   for (var i = 0; i < getNumOfEvents(); i++) {
     var item = eventsContainer[i];
     //console.log(item);
-    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth+1 
+    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth + 1
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'downtime') {
       if (item.startHour === "24") {
         end = "24" + item.endHour;
@@ -494,14 +518,13 @@ doActionRelax = () => {
     }
   }
 
-  if(downTime < "2"){
+  if (downTime < "2") {
     insight = "Relaxing is important. Consider spending more time relaxing."
   }
-  else if(downTime >= "12")
-  {
+  else if (downTime >= "12") {
     insight = "Downtime is taking a considerable amount of time. Consider cutting it down to stay productive."
   }
-  else{
+  else {
     insight = "Looks good!";
   }
 
@@ -518,7 +541,7 @@ doActionExercise = () => {
   for (var i = 0; i < getNumOfEvents(); i++) {
     var item = eventsContainer[i];
     console.log(item);
-    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth+1 
+    if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth + 1
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'exercise') {
       if (item.startHour === "24") {
         end = "24" + item.endHour;
@@ -530,14 +553,13 @@ doActionExercise = () => {
     }
   }
 
-  if(exerciseTime <= "0"){
+  if (exerciseTime <= "0") {
     insight = "Exercise is important. Consider spending some time exercising to stay healthy."
   }
-  else if(exerciseTime > "5")
-  {
+  else if (exerciseTime > "5") {
     insight = "Exercise is good but is taking a considerable amount of time. Consider cutting it down."
   }
-  else{
+  else {
     insight = "Looks good!";
   }
 
@@ -546,7 +568,7 @@ doActionExercise = () => {
   document.getElementById("Einsight").innerHTML = insight;
 }
 
-function insightClient(){
+function insightClient() {
   const stratM = new insightManager();
   const strategy1 = new Strategy('insightDiet', doActionDiet);
   const strategy2 = new Strategy('insightWork', doActionWork);
@@ -568,7 +590,7 @@ function insightClient(){
 
   const strategyC = stratM.getStrategy('insightSleep');
   strategyC.doAction();
-  
+
   const strategyD = stratM.getStrategy('insightRelax');
   strategyD.doAction();
 
@@ -576,7 +598,7 @@ function insightClient(){
   strategyE.doAction();
 }
 
-function clearinsight(){
+function clearinsight() {
   document.getElementById("Diet Insights").innerHTML = "";
   document.getElementById("Dtime").innerHTML = "";
   document.getElementById("Dinsight").innerHTML = "";
