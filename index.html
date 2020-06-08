@@ -214,20 +214,25 @@
     <div class="Exercise Insights" id="Exercise Insights"></div>
       <div class="Exercise Time" id="Etime"></div>
       <div class="Exercise insight" id="Einsight"></div>
-    <p>TO-DO: ADD PERSONALZIED INSIGHTS PAGE HERE. ALSO ADD BLOG SECITON OR SOMETHING???</p>
   </div>
 
 <div id="Settings" class="tabcontent">
   <h3>Settings</h3>
   <p>insert settings page here: needs reset button, decorator pattern to change colors, user's name</p>
   <input id="changeName" type="text" placeholder="Name">
+  <input id="savebtn" class="btn" type= "button"value="SAVE SETTINGS" onclick="saveSettings()">
   <input id="resetbtn" class="btn" type= "button"value="RESET" onclick="resetLSAndContainer()">
 </div>
 
   <div id="Activate" class="tabcontent">
     <h3>Activate Home</h3>
-    <h2 class="homeText">Welcome, ____</h2>
-    <p class="homeText">You were 80% productive this week</p>
+    <div class="welcomeText">
+      <h2 id="nameText">Welcome, <ins id="homeName"></ins> <br> </h2>
+      <p id="percentText">You were <ins id="percentProductive"></ins>% productive this week</p>
+      <script type="text/javascript">document.querySelector('#homeName').innerHTML = localStorage.getItem("name")
+</script>
+    </div>
+
   </div>
 
 <!-- below script is used to make home page the default that pops up-->

@@ -184,7 +184,8 @@ function alert() {
 }
 
 function getNumOfEvents() {
-  if (localStorage.length == 0) {
+  //if (localStorage.length == 0) {
+    if (!localStorage.getItem("day")){
     return 0
   }
   else {
@@ -197,7 +198,7 @@ function getNumOfEvents() {
 // }
 
 function createPreviousArray() {//on page refresh eventsContainer is emptied, so we need this function
-  if (localStorage.length == 0) {//if LS is empty, do nothing
+  if (getNumOfEvents() == 0) {//if LS is empty, do nothing
     return
   }
   else if (eventsContainer.length > 0) {//if something already exists in eventsContainer, do nothing
@@ -262,7 +263,7 @@ function resetLSAndContainer() {
     localStorage.clear();
     eventsContainer = [];
   }
-  displayRadarChart();
+  //displaypolarChart();
   clearinsight();
 }
 function total_hrs_by_event(eventTitle) {
@@ -286,9 +287,9 @@ function hrs_by_event_by_day(eventTitle, day, month, year) {
 }
 
 function displayPolarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHART
-  let radarChart = document.getElementById('PolarChart').getContext('2d');
+  let polarChart = document.getElementById('PolarChart').getContext('2d');
 
-  window.chart = new Chart(radarChart, {
+  window.chart = new Chart(polarChart, {
     type: 'polarArea',
     data: {
       labels: ["downtime", "eating", "exercise", "family-time", "homework", "productive-work", "reading", "sleep", "social-time", "work"],
@@ -464,7 +465,7 @@ doActionSleep = () => {
   }
   else if(sleepTime >= "12")
   {
-    insight = "Eating is taking a considerable amount of time. Consider cutting it down."
+    insight = "Sleeping is taking a considerable amount of time. Consider cutting it down."
   }
   else{
     insight = "Looks good!";
@@ -600,10 +601,14 @@ function clearinsight(){
   document.getElementById("Einsight").innerHTML = "";
 }
 
+function saveSettings(){
+    const nameInput = document.querySelector('#changeName').value;
+    localStorage.setItem("name", nameInput)
+    document.querySelector('#homeName').innerHTML = localStorage.getItem("name")
+
+}
 //page initialization stuff goes here
 
 var eventsContainer = [];//array for each object 
 createPreviousArray();
-
-
 

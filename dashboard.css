@@ -51,13 +51,19 @@ h1{
   border: 1px solid #ccc;
   border-top: none;
 }
-
-.homeText {
+.welcomeText {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
   border:none;
+  text-align: center;
+
+}
+
+#nameText {
+  font-size: 300%;
+  text-align: center;
 }
 
 
