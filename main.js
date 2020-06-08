@@ -10,11 +10,6 @@ function openActivateTab(evt, ActivateTabName) {
   }
   document.getElementById(ActivateTabName).style.display = "block";
   evt.currentTarget.className += " active";
-  // DO we even need this? not even the right syntax **********************************************
-  // if (ActivateTabName == 'Calendar') {
-  //   loadCalendarDays();
-  //   loadEventList();
-  // }
   document.querySelector('#insightBtn').value = "Generate insights for " + months[currmonth] + " " + currday + ", " + curryear;
 }
 
@@ -88,12 +83,19 @@ function daysInMonth(month, year) {
 
 function loadEventList() {
   var result = "";
-  for (var i = 0; i < getNumOfEvents(); i++) {
-    var item = eventsContainer[i];
-    if (item.day == currday && item.year == curryear && item.month == currmonth + 1) {
-      result += item.stringify();
+  var eventlist = eventComposite.getChild(curryear);
+  if (eventlist != -1) {
+    eventlist = eventlist.getChild(currmonth + 1);
+    if (eventlist != -1) {
+      eventlist = eventlist.getChild(currday);
+      if (eventlist != -1) {
+        for (var i = 0; i < eventlist.numEvents; i++) {
+          result += eventlist.getChild(i).stringify();
+        }
+      }
     }
   }
+
   if (result == "") {
     result = "<br>Empty";
   }
@@ -106,7 +108,7 @@ window.addEventListener('load', function () {
   var date = new Date();
   currmonth = date.getMonth();
   curryear = date.getFullYear();
-  currday = date.getDay();
+  currday = date.getDate();
   document.getElementById("curMonth").innerHTML = months[currmonth];
   document.getElementById("curYear").innerHTML = curryear;
   loadCalendarDays();
@@ -170,6 +172,8 @@ function submitInput() {
 
     eventsContainer.push(new ActivateEvent(dayInput, monthInput, yearInput, startHourInput, endHourInput, eventTitleInput))
   }
+  eventComposite.addComponent(new ActivateEvent(dayInput, monthInput, yearInput, startHourInput, endHourInput, eventTitleInput));
+
 }
 
 function alert() {
@@ -184,7 +188,8 @@ function alert() {
 }
 
 function getNumOfEvents() {
-  if (localStorage.length == 0) {
+  //if (localStorage.length == 0) {
+  if (!localStorage.getItem("day")) {
     return 0
   }
   else {
@@ -197,7 +202,7 @@ function getNumOfEvents() {
 // }
 
 function createPreviousArray() {//on page refresh eventsContainer is emptied, so we need this function
-  if (localStorage.length == 0) {//if LS is empty, do nothing
+  if (getNumOfEvents() == 0) {//if LS is empty, do nothing
     return
   }
   else if (eventsContainer.length > 0) {//if something already exists in eventsContainer, do nothing
@@ -213,42 +218,106 @@ function createPreviousArray() {//on page refresh eventsContainer is emptied, so
 
     for (var i = 0; i < getNumOfEvents(); i++) {
       //eventsContainer.push(new ActivateEvent(localStorage.getItem("day").value,localStorage.getItem("month").value,localStorage.getItem("year").value,localStorage.getItem("startHour").value,localStorage.getItem("endHour").value,localStorage.getItem("eventTitle").value,))
-      eventsContainer.push(new ActivateEvent(dayArr[i], monthArr[i], yearArr[i], startHourArr[i], endHourArr[i], eventTitleArr[i]))
-
+      eventsContainer.push(new ActivateEvent(dayArr[i], monthArr[i], yearArr[i], startHourArr[i], endHourArr[i], eventTitleArr[i]));
+      eventComposite.addComponent(new ActivateEvent(dayArr[i], monthArr[i], yearArr[i], startHourArr[i], endHourArr[i], eventTitleArr[i]));
     }
   }
 
 }
 
 //composite components
+class ActivateBase {
+  constructor() {
+    this.years = [];
+    this.numYears = 0;
+  }
+  addComponent(event) {
+    for (var i = 0; i < this.numYears; i++) {
+      if (this.years[i].year == event.year) {
+        this.years[i].addComponent(event);
+        return;
+      }
+    }
+    this.years.push(new ActivateYear(event.year));
+    this.years[this.numYears].addComponent(event);
+    this.numYears++;
+  }
+  getChild(year) {
+    for (var i = 0; i < this.numYears; i++) {
+      if (this.years[i].year == year) {
+        return this.years[i];
+      }
+    }
+    return -1;
+  }
+}
 class ActivateYear {
   constructor(year) {
     this.year = year;
     this.numMonths = 0;
     this.months = [];
   }
-  addComponent(month) {
-    this.months.push(month);
+  addComponent(event) {
+    for (var i = 0; i < this.numMonths; i++) {
+      if (this.months[i].month == event.month) {
+        this.months[i].addComponent(event);
+        return;
+      }
+    }
+    this.months.push(new ActivateMonth(event.month));
+    this.months[this.numMonths].addComponent(event);
     this.numMonths++;
+  }
+  getChild(month) {
+    for (var i = 0; i < this.numMonths; i++) {
+      if (this.months[i].month == month) {
+        return this.months[i];
+      }
+    }
+    return -1;
   }
 }
 class ActivateMonth {
   constructor(month) {
     this.month = month;
-    this
+    this.numDays = 0;
+    this.days = [];
   }
-  addComponent(day) {
-    this.days.push(day);
+  addComponent(event) {
+    for (var i = 0; i < this.numDays; i++) {
+      if (this.days[i].day == event.day) {
+        this.days[i].addComponent(event);
+        return;
+      }
+    }
+    this.days.push(new ActivateDay(event.day));
+    this.days[this.numDays].addComponent(event);
+    this.numDays++;
+  }
+  getChild(day) {
+    for (var i = 0; i < this.numDays; i++) {
+      if (this.days[i].day == day) {
+        return this.days[i];
+      }
+    }
+    return -1;
   }
 }
 class ActivateDay {
   constructor(day) {
     this.day = day;
+    this.numEvents = 0;
+    this.events = [];
   }
   addComponent(event) {
     this.events.push(event);
+    this.numEvents++;
+  }
+  getChild(index) {
+    return this.events[index];
   }
 }
+//concrete component
 class ActivateEvent {
   constructor(day, month, year, startHour, endHour, eventTitle) {
     this.day = day;
@@ -290,7 +359,7 @@ function resetLSAndContainer() {
     localStorage.clear();
     eventsContainer = [];
   }
-  displayRadarChart();
+  //displaypolarChart();
   clearinsight();
 }
 function total_hrs_by_event(eventTitle) {
@@ -314,9 +383,9 @@ function hrs_by_event_by_day(eventTitle, day, month, year) {
 }
 
 function displayPolarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHART
-  let radarChart = document.getElementById('PolarChart').getContext('2d');
+  let polarChart = document.getElementById('PolarChart').getContext('2d');
 
-  window.chart = new Chart(radarChart, {
+  window.chart = new Chart(polarChart, {
     type: 'polarArea',
     data: {
       labels: ["downtime", "eating", "exercise", "family-time", "homework", "productive-work", "reading", "sleep", "social-time", "work"],
@@ -488,7 +557,7 @@ doActionSleep = () => {
     insight = "Sleep is important. Consider spending more time sleeping."
   }
   else if (sleepTime >= "12") {
-    insight = "Eating is taking a considerable amount of time. Consider cutting it down."
+    insight = "Sleeping is taking a considerable amount of time. Consider cutting it down."
   }
   else {
     insight = "Looks good!";
@@ -622,10 +691,19 @@ function clearinsight() {
   document.getElementById("Einsight").innerHTML = "";
 }
 
-//page initialization stuff goes here
+function saveSettings() {
+  const nameInput = document.querySelector('#changeName').value;
+  localStorage.setItem("name", nameInput)
+  document.querySelector('#homeName').innerHTML = localStorage.getItem("name")
 
+}
+
+function percentProductive() {
+  downtimehours
+  return Math.round((24 * 7 - downtimehours) / (24 * 7))
+}
+//page initialization stuff goes here
+var eventComposite = new ActivateBase();
 var eventsContainer = [];//array for each object 
 createPreviousArray();
-
-
 
