@@ -347,9 +347,9 @@ class ActivateEvent {
   }
 }
 
-function resetLocalStorage() {
-  localStorage.clear()
-}
+// function resetLocalStorage() {
+//   localStorage.clear()
+// }
 
 function resetLSAndContainer() {
   if (window.confirm('Are you sure you want to reset your data?\nThis action cannot be undone.')) {
@@ -379,6 +379,22 @@ function total_hrs_by_event(eventTitle) {
   return result
 }
 
+function total_hrs(){
+  let result = 0;
+  var start = 0;
+  var end = 0;
+  eventsContainer.forEach(function (item) {
+      start = parseInt(item.startHour, 10);
+      end = parseInt(item.endHour, 10);
+      if (start > end) {
+        end = 24 + end;
+      }
+      result += Math.abs(end - start);
+    
+  })
+  return result
+}
+
 function hrs_by_event_by_day(eventTitle, day, month, year) {
   let result = 0;
   var start = 0;
@@ -399,7 +415,7 @@ function hrs_by_event_by_day(eventTitle, day, month, year) {
 
 function displayPolarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHART
   if(window.chart) {window.chart.destroy();} 
-  let polarChart = document.getElementById('PolarChart').getContext('2d');
+  let polarChart = document.getElementById('Chart').getContext('2d');
 
   window.chart = new Chart(polarChart, {
     type: 'polarArea',
@@ -425,14 +441,67 @@ function displayPolarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHAR
       maintainAspectRatio: true
     }
   })
+
 }
 
-function displayLineChart() {
-  let lineChart = document.getElementById('lineChart').getContext('2d')
+function displayBarChart() {
+  if(window.chart) {window.chart.destroy();} 
+  let barChart = document.getElementById('Chart').getContext('2d');
+
+  window.chart = new Chart(barChart, {
+    type: 'bar',
+    data: {
+      labels: ["downtime", "eating", "exercise", "family-time", "homework", "productive-work", "reading", "sleep", "social-time", "work"],
+      datasets: [{
+        data: [
+          total_hrs_by_event("downtime"),
+          total_hrs_by_event("eating"),
+          total_hrs_by_event("exercise"),
+          total_hrs_by_event("family-time"),
+          total_hrs_by_event("homework"),
+          total_hrs_by_event("productive-work"),
+          total_hrs_by_event("reading"),
+          total_hrs_by_event("sleep"),
+          total_hrs_by_event("social-time"),
+          total_hrs_by_event("work")
+        ]
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true
+    }
+  })
 }
 
 function displayPieChart() {
+ if(window.chart) {window.chart.destroy();} 
+  let pieChart = document.getElementById('Chart').getContext('2d');
 
+  window.chart = new Chart(pieChart, {
+    type: 'pie',
+    data: {
+      labels: ["downtime", "eating", "exercise", "family-time", "homework", "productive-work", "reading", "sleep", "social-time", "work"],
+      datasets: [{
+        data: [
+          total_hrs_by_event("downtime"),
+          total_hrs_by_event("eating"),
+          total_hrs_by_event("exercise"),
+          total_hrs_by_event("family-time"),
+          total_hrs_by_event("homework"),
+          total_hrs_by_event("productive-work"),
+          total_hrs_by_event("reading"),
+          total_hrs_by_event("sleep"),
+          total_hrs_by_event("social-time"),
+          total_hrs_by_event("work")
+        ]
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true
+    }
+  })
 }
 
 class insightManager {
@@ -712,11 +781,12 @@ function saveSettings() {
 }
 
 function percentProductive() {
-  downtimehours
-  return Math.round((24 * 7 - downtimehours) / (24 * 7))
+  let downtimehours = total_hrs_by_event("downtime")
+  return Math.round((total_hrs() - downtimehours) / total_hrs()*100)
 }
 //page initialization stuff goes here
 var eventComposite = new ActivateBase();
 var eventsContainer = [];//array for each object 
 createPreviousArray();
+
 

@@ -190,9 +190,16 @@
 <div id="Visualize" class="tabcontent">
   <h3>Visualize</h3>
   <p>TO-DO: ADD VISUALIZE TAB. STRATEGY PATERN I THINK?</p> 
-    <input id="visualizeBtn" class="btn" type="button" value="Visualize Polar Area Chart" 
+    <input id="polarbtn" class="btn" type="button" value="Visualize Polar Area Chart"
         onclick="displayPolarChart();">
-    <canvas id="PolarChart"></canvas>
+
+    <input id="barbtn" class="btn" type="button" value="Visualize Bar Chart"
+        onclick="displayBarChart();">
+
+    <input id="piebtn" class="btn" type="button" value="Visualize Pie Chart"
+        onclick="displayPieChart();">
+
+    <canvas id="Chart"></canvas>
 </div>
 
   <div id="Insights" class="tabcontent">
@@ -219,19 +226,27 @@
 
 <div id="Settings" class="tabcontent">
   <h3>Settings</h3>
-  <p>insert settings page here: needs reset button, decorator pattern to change colors, user's name</p>
   <input id="changeName" type="text" placeholder="Name">
+  <br>
+  <br>
+  <input type="radio" id="defaultColors "name="colors" value="Default" checked>
+  <label for="defaultColors">Default Colors</label><br><br>
+  <input type="radio" id="darkColors "name="colors" value="Dark" >
+  <label for="darkColors">Dark Colors</label><br><br>
+
   <input id="savebtn" class="btn" type= "button"value="SAVE SETTINGS" onclick="saveSettings()">
   <input id="resetbtn" class="btn" type= "button"value="RESET" onclick="resetLSAndContainer()">
+
 </div>
 
   <div id="Activate" class="tabcontent">
     <h3>Activate Home</h3>
     <div class="welcomeText">
       <h2 id="nameText">Welcome, <ins id="homeName"></ins> <br> </h2>
-      <p id="percentText">You were <ins id="percentProductive"></ins>% productive this week</p>
+      <p id="percentText">You have been <ins id="percentProductive"></ins>% productive with your time</p>
       <script type="text/javascript">document.querySelector('#homeName').innerHTML = localStorage.getItem("name")
-</script>
+        document.querySelector('#percentProductive').innerHTML = percentProductive()
+      </script>
     </div>
 
   </div>
