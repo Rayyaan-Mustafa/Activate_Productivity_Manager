@@ -50,3 +50,16 @@ Depending on the user inputted data, the insights strategy pattern will produce 
 ## Decorator Pattern
 ![Decorator Pattern](/DesignPatternPictures/DecoratorPattern.png)
 The decorator design pattern allows us to add new functioniality to already existing objects. With this pattern we have Chart as our abstract component. Chart has three concrete components namely, Radar, Pie, and Line chart. Chart Decorator is our abstract decorator and it has two concrecte decorators namely, Default Colors Decorator and Dark Colors Decorator. This design pattern allows us the functionality to alter the color scheme of our charts during run-time
+
+---
+
+# Input/Output
+## Input
+![input](/images/input.png)
+## Output
+![output](/images/output1.png)
+![output](/images/ouput2.png)
+
+# How to run code
+
+To run the application simply download the associated files and open the index.html file in your browser of choice.
