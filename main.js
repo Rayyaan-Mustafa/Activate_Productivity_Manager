@@ -618,7 +618,6 @@ doActionDiet = () => {
   for (var i = 0; i < getNumOfEvents(); i++) {
     var item = eventsContainer[i];
     //console.log(item);
-    console.log(currday + " " + currmonth + " " + curryear);
     if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth + 1
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'eating') {
       start = parseInt(item.startHour, 10);
@@ -776,7 +775,6 @@ doActionExercise = () => {
   var insight = "";
   for (var i = 0; i < getNumOfEvents(); i++) {
     var item = eventsContainer[i];
-    console.log(item);
     if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth + 1
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'exercise') {
       start = parseInt(item.startHour, 10);
@@ -875,6 +873,7 @@ function saveSettings() {
   else {
     localStorage.setItem("colorTheme", "default")
   }
+  if(window.chart) {window.chart.destroy();} 
 
 }
 
@@ -890,5 +889,4 @@ createPreviousArray();
 if(!localStorage.getItem("colorTheme")){
   localStorage.setItem("colorTheme",'default')
 }
-
 

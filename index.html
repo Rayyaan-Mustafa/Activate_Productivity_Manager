@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="dashboard.css">
   <script src="main.js"></script>
+  <script src="unitTests.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
@@ -18,6 +19,7 @@
     <button class="tablinks" onclick="openActivateTab(event, 'Visualize')">Visualize</button>
     <button class="tablinks" onclick="openActivateTab(event, 'Insights')">Insights</button>
     <button class="tablinks" onclick="openActivateTab(event, 'Settings')">Settings</button>
+    <button class="tablinks" onclick="openActivateTab(event, 'Tests')">UnitTests</button>
   </div>
 
   <div id="Calendar" class="tabcontent">
@@ -202,7 +204,7 @@
     <canvas id="Chart"></canvas>
 </div>
 
-  <div id="Insights" class="tabcontent">
+  <div1 id="Insights" class="tabcontent">
     <h3>Insights</h3>
     <input id="insightBtn" class = "btn" type="button" value="Generate insights" onclick="insightClient()">
     <div class="Diet Insights" id="Diet Insights"></div>
@@ -222,7 +224,7 @@
     <div class="Exercise Insights" id="Exercise Insights"></div>
       <div class="Exercise Time" id="Etime"></div>
       <div class="Exercise insight" id="Einsight"></div>
-  </div>
+  </div1>
 
 <div id="Settings" class="tabcontent">
   <h3>Settings</h3>
@@ -237,6 +239,12 @@
   <input id="savebtn" class="btn" type= "button"value="SAVE SETTINGS" onclick="saveSettings()">
   <input id="resetbtn" class="btn" type= "button"value="RESET" onclick="resetLSAndContainer()">
 
+</div>
+
+<div id="Tests" class="tabcontent">
+  <h3>Test Page</h3>
+  <p>Decorator test</p>
+  <input id="resetbtn" class="btn" type= "button"value="Run Test" onclick="decorUnitTest()">
 </div>
 
   <div id="Activate" class="tabcontent">
