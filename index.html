@@ -112,8 +112,7 @@
         </select>
       </div>
       <div>
-        <input class="btn" type="submit" value="Submit" 
-            onclick="submitInput(); alert(); loadEventList();">
+        <input class="btn" type="submit" value="Submit" onclick="submitInput(); alert(); loadEventList();">
       </div>
       <div class="alert">
         <span class="fas fa-check"></span>
@@ -189,63 +188,62 @@
 
   </div>
 
-<div id="Visualize" class="tabcontent">
-  <h3>Visualize</h3>
-  <p>TO-DO: ADD VISUALIZE TAB. STRATEGY PATERN I THINK?</p> 
-    <input id="polarbtn" class="btn" type="button" value="Visualize Polar Area Chart"
-        onclick="displayPolarChart();">
+  <div id="Visualize" class="tabcontent">
+    <h3>Visualize</h3>
+    <p>TO-DO: ADD VISUALIZE TAB. STRATEGY PATERN I THINK?</p>
+    <input id="polarbtn" class="btn" type="button" value="Visualize Polar Area Chart" onclick="displayPolarChart();">
 
-    <input id="barbtn" class="btn" type="button" value="Visualize Bar Chart"
-        onclick="displayBarChart();">
+    <input id="barbtn" class="btn" type="button" value="Visualize Bar Chart" onclick="displayBarChart();">
 
-    <input id="piebtn" class="btn" type="button" value="Visualize Pie Chart"
-        onclick="displayPieChart();">
+    <input id="piebtn" class="btn" type="button" value="Visualize Pie Chart" onclick="displayPieChart();">
 
     <canvas id="Chart"></canvas>
-</div>
+  </div>
 
   <div1 id="Insights" class="tabcontent">
     <h3>Insights</h3>
-    <input id="insightBtn" class = "btn" type="button" value="Generate insights" onclick="insightClient()">
+    <input id="insightBtn" class="btn" type="button" value="Generate insights" onclick="insightClient()">
     <div class="Diet Insights" id="Diet Insights"></div>
-      <div class="Diet Time" id="Dtime"></div>
-      <div class="Diet insight" id="Dinsight"></div>
+    <div class="Diet Time" id="Dtime"></div>
+    <div class="Diet insight" id="Dinsight"></div>
     <div class="Work Insights" id="Work Insights"></div>
-      <div class="Work Time" id="Wtime"></div>
-      <div class="work insight" id="Winsight"></div>
-      <div class="Pwork Time" id="Ptime"></div>
-      <div class="Pwork insight" id="Pinsight"></div>
+    <div class="Work Time" id="Wtime"></div>
+    <div class="work insight" id="Winsight"></div>
+    <div class="Pwork Time" id="Ptime"></div>
+    <div class="Pwork insight" id="Pinsight"></div>
     <div class="Sleep Insights" id="Sleep Insights"></div>
-      <div class="Sleep Time" id="Stime"></div>
-      <div class="Sleep insight" id="Sinsight"></div>
+    <div class="Sleep Time" id="Stime"></div>
+    <div class="Sleep insight" id="Sinsight"></div>
     <div class="Relax Insights" id="Relax Insights"></div>
-      <div class="Relax Time" id="Rtime"></div>
-      <div class="Relax insight" id="Rinsight"></div>
+    <div class="Relax Time" id="Rtime"></div>
+    <div class="Relax insight" id="Rinsight"></div>
     <div class="Exercise Insights" id="Exercise Insights"></div>
-      <div class="Exercise Time" id="Etime"></div>
-      <div class="Exercise insight" id="Einsight"></div>
+    <div class="Exercise Time" id="Etime"></div>
+    <div class="Exercise insight" id="Einsight"></div>
   </div1>
 
-<div id="Settings" class="tabcontent">
-  <h3>Settings</h3>
-  <input id="changeName" type="text" placeholder="Name">
-  <br>
-  <br>
-  <input type="radio" id="defaultColors "name="colors" value="Default" >
-  <label for="defaultColors">Default Colors</label><br><br>
-  <input type="radio" id="darkColors "name="colors" value="Dark" >
-  <label for="darkColors">Dark Colors</label><br><br>
+  <div id="Settings" class="tabcontent">
+    <h3>Settings</h3>
+    <input id="changeName" type="text" placeholder="Name">
+    <br>
+    <br>
+    <input type="radio" id="defaultColors " name="colors" value="Default">
+    <label for="defaultColors">Default Colors</label><br><br>
+    <input type="radio" id="darkColors " name="colors" value="Dark">
+    <label for="darkColors">Dark Colors</label><br><br>
 
-  <input id="savebtn" class="btn" type= "button"value="SAVE SETTINGS" onclick="saveSettings()">
-  <input id="resetbtn" class="btn" type= "button"value="RESET" onclick="resetLSAndContainer()">
+    <input id="savebtn" class="btn" type="button" value="SAVE SETTINGS" onclick="saveSettings()">
+    <input id="resetbtn" class="btn" type="button" value="RESET" onclick="resetLSAndContainer()">
 
-</div>
+  </div>
 
-<div id="Tests" class="tabcontent">
-  <h3>Test Page</h3>
-  <p>Decorator test</p>
-  <input id="resetbtn" class="btn" type= "button"value="Run Test" onclick="decorUnitTest()">
-</div>
+  <div id="Tests" class="tabcontent">
+    <h3>Test Page</h3>
+    <p>Composite test</p>
+    <input id="resetbtn" class="btn" type="button" value="Run Test" onclick="compositeUnitTest()">
+    <p>Strategy test</p>
+    <input id="resetbtn" class="btn" type="button" value="Run Test" onclick="strategyUnitTest()">
+  </div>
 
   <div id="Activate" class="tabcontent">
     <h3>Activate Home</h3>
@@ -259,10 +257,10 @@
 
   </div>
 
-<!-- below script is used to make home page the default that pops up-->
-<script type="text/javascript">
-  document.getElementsByClassName('tablinks')[0].click()
-</script>
+  <!-- below script is used to make home page the default that pops up-->
+  <script type="text/javascript">
+    document.getElementsByClassName('tablinks')[0].click()
+  </script>
 </body>
 
 </html>
