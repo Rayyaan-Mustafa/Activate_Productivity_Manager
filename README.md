@@ -18,7 +18,7 @@ As college students, we find ourselves always at a strain for time. Being able t
 ---
 
 ##### What language/tools/technology you plan to use?
-	HTML - used to make raw website  
+    HTML - used to make raw website  
     CSS - used to customize website  
     JS - used to add interactivty to website  
     Chart.js - used for visualization  
@@ -54,18 +54,22 @@ Depending on the user inputted data, the insights strategy pattern will produce 
 ---
 
 ## Decorator Pattern
-![Decorator Pattern](/DesignPatternPictures/DecoratorPattern.png)
-The decorator design pattern allows us to add new functioniality to already existing objects. With this pattern we have Chart as our abstract component. Chart has three concrete components namely, Radar, Pie, and Line chart. Chart Decorator is our abstract decorator and it has two concrecte decorators namely, Default Colors Decorator and Dark Colors Decorator. This design pattern allows us the functionality to alter the color scheme of our charts during run-time
+![Decorator Pattern](/DesignPatternPictures/DecoratorPatternUpdate.png)
+The decorator design pattern allows us to add new functioniality to already existing objects. With this pattern we have Chart as our abstract component. Chart has three concrete components namely, Polar, Pie, and Bar chart. Chart Decorator is our abstract decorator and it has two concrecte decorators namely, Default Colors Decorator and Dark Colors Decorator. This design pattern allows us the functionality to alter the color scheme of our charts during run-time.
 
 ---
 
 # Input/Output
 ## Input
 ![input](/images/input.png)
+The page takes input from the user through the form and interactive calendar on the Calendar page.
 ## Output
 ![output](/images/output1.png)
+A chart is drawn on a canvas at the click of a button with Charts.js.
 ![output](/images/ouput2.png)
+Insights are generated in javascript and added to the html on click.
 
-# How to run code
+# How to run the code
 
-To run the application simply download the associated files and open the index.html file in your browser of choice.
+To run the application simply download the associated files and open the index.html file in your browser of choice. Best compatibility in the chrome web browser.
+The default date is set to the current date. Users can and should select a new one via the calendar on the right, if filling out the form for a different day. Click on the other tabs to use their associated features by clicking on the buttons after filling out the calendar page.
