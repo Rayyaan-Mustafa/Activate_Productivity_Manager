@@ -104,6 +104,97 @@ strategyUnitTest = () => {
   quickReset();
 }
 
+decoratorUnitTest = () => {//decorator can really only be tested through observing the visual representations. However, we can test some of the functions associated with the decorator pattern
+  quickReset();
+  createArray_tests(
+    "8;8;8;8;8;8", "6;6;6;6;6;6", "2020;2020;2020;2020;2020;2020", "0;1;2;3;4;5",
+    "1;2;3;4;5;6", "eating;work;productive-work;sleep;downtime;exercise"
+  );
+
+  console.log("Testing total_hrs_by_event() function");
+  if( total_hrs_by_event("downtime") == 1 &&
+      total_hrs_by_event("eating") == 1 && 
+      total_hrs_by_event("exercise") == 1 && 
+      total_hrs_by_event("productive-work") == 1&& 
+      total_hrs_by_event("sleep") == 1 && 
+      total_hrs_by_event("work") == 1
+    ){
+    console.log(true);
+    }
+  else {
+    console.log(false);
+  }
+  console.log("Testing bgTheme() and bcTheme() function");
+  var bgDefault = [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 198, 204, 0.2)',
+          'rgba(189, 195, 204, 0.2)',
+          'rgba(117, 196, 188, 0.2)',
+          'rgba(226, 135, 145, 0.2)'
+        ]
+  var bgDark =   [
+          'rgba(0,104,132,0.2)',
+          'rgba(237,250,157,0.2)',
+          'rgba(176,0,81,0.2)',
+          'rgba(0,0,0,0.2)',
+          'rgba(110,0,108,0.2)',
+          'rgba(91,91,91,0.2)',
+          'rgba(57,106,177,0.2)',
+          'rgba(218,124,48,0.2)',
+          'rgba(62,150,81,0.2)',
+          'rgba(146,36,40,0.2)'
+        ]
+  var bcDefault = [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(255, 198, 204, 1)',
+          'rgba(189, 195, 204, 1)',
+          'rgba(117, 196, 188, 1)',
+          'rgba(226, 135, 145, 1)'
+          ]
+  var bcDark = [
+          'rgba(0,104,132,1)',
+          'rgba(237,250,157,1)',
+          'rgba(176,0,81,1)',
+          'rgba(0,0,0,1)',
+          'rgba(110,0,108,1)',
+          'rgba(91,91,91,1)',
+          'rgba(57,106,177,1)',
+          'rgba(218,124,48,1)',
+          'rgba(62,150,81,1)',
+          'rgba(146,36,40,1)'
+          ]   
+  localStorage.setItem("colorTheme", "default") 
+   for(var i = 0; i< bgDefault.length; i++){
+    console.log(bgTheme()[i] == bgDefault[i])
+  }
+   localStorage.setItem("colorTheme", "dark")
+  for(var i = 0; i< bgDark.length; i++){
+    console.log(bgTheme()[i] == bgDark[i])
+  }
+  localStorage.setItem("colorTheme", "default") 
+   for(var i = 0; i< bcDefault.length; i++){
+    console.log(bcTheme()[i] == bcDefault[i])
+  }
+   localStorage.setItem("colorTheme", "dark")
+   for(var i = 0; i< bcDark.length; i++){
+    console.log(bcTheme()[i] == bcDark[i])
+  }
+    
+
+
+}
+
+
 /* Unit Test helper functions */
 quickReset = () => {
   localStorage.clear();

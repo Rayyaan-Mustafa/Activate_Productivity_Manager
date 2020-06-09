@@ -395,7 +395,7 @@ function total_hrs(){
   return result
 }
 
-function hrs_by_event_by_day(eventTitle, day, month, year) {
+function hrs_by_event_by_day(eventTitle, day, month, year) {//unused i think
   let result = 0;
   var start = 0;
   var end = 0;
@@ -413,7 +413,7 @@ function hrs_by_event_by_day(eventTitle, day, month, year) {
   return result
 }
 
-function displayPolarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHART
+function displayPolarChart() {
   var pos = $(document).scrollTop();
   if(window.chart) {window.chart.destroy();} 
   let polarChart = document.getElementById('Chart').getContext('2d');
