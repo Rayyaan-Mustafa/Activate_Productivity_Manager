@@ -53,10 +53,14 @@ compositeUnitTest = () => {
 
 /* STRATEGY TEST */
 strategyUnitTest = () => {
+  currday = 9;
+  currmonth = 6-1;
+  curryear = 2020;
+  clearinsight();
   quickReset();
   console.log("Testing for insight (under)");
   createArray_tests(
-    "8;8;8;8;8;8", "6;6;6;6;6;6", "2020;2020;2020;2020;2020;2020", "0;0;0;0;0;0",
+    "9;9;9;9;9;9", "6;6;6;6;6;6", "2020;2020;2020;2020;2020;2020", "0;0;0;0;0;0",
     "1;1;1;1;1;0", "eating;work;productive-work;sleep;downtime;exercise"
   );
   insightClient();
@@ -70,9 +74,10 @@ strategyUnitTest = () => {
     s.includes("Exercise is important. Consider spending some time exercising to stay healthy."),
   )
   quickReset();
+  clearinsight();
   console.log("Testing for insight (over)");
   createArray_tests(
-    "8;8;8;8;8;8", "6;6;6;6;6;6", "2020;2020;2020;2020;2020;2020", "0;0;0;0;0;0",
+    "9;9;9;9;9;9", "6;6;6;6;6;6", "2020;2020;2020;2020;2020;2020", "0;0;0;0;0;0",
     "12;12;12;12;12;12", "eating;work;productive-work;sleep;downtime;exercise"
   );
   insightClient();
@@ -86,9 +91,10 @@ strategyUnitTest = () => {
     s.includes("Exercise is good, but it's taking a considerable amount of time. Consider cutting it down."),
   )
   quickReset();
+  clearinsight();
   console.log("Testing for insight (ok)");
   createArray_tests(
-    "8;8;8;8;8;8", "6;6;6;6;6;6", "2020;2020;2020;2020;2020;2020", "0;0;0;0;0;0",
+    "9;9;9;9;9;9", "6;6;6;6;6;6", "2020;2020;2020;2020;2020;2020", "0;0;0;0;0;0",
     "3;8;8;8;5;1", "eating;work;productive-work;sleep;downtime;exercise"
   );
   insightClient();
@@ -102,6 +108,7 @@ strategyUnitTest = () => {
     s.includes("Looks good!"),
   )
   quickReset();
+  clearinsight();
 }
 
 decoratorUnitTest = () => {//decorator can really only be tested through observing the visual representations. However, we can test some of the functions associated with the decorator pattern

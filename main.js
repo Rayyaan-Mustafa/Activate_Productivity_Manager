@@ -360,6 +360,8 @@ function resetLSAndContainer() {
   if(window.chart) {window.chart.destroy();} 
   loadEventList();
   clearinsight();
+  percentProductive();
+  document.querySelector('#homeName').innerHTML ="";
 }
 
 function total_hrs_by_event(eventTitle) {
@@ -863,7 +865,7 @@ function clearinsight() {
 function saveSettings() {
   const nameInput = document.querySelector('#changeName').value;
   localStorage.setItem("name", nameInput)
-  document.querySelector('#homeName').innerHTML = localStorage.getItem("name")
+  document.querySelector('#homeName').innerHTML = localStorage.getItem("name");
   // let darkColorTheme = document.getElementById("darkColors").checked
   // if(darkColorTheme){
   //   localStorage.setItem("colorTheme", "dark")
@@ -885,7 +887,7 @@ function saveSettings() {
 function percentProductive() {
   let downtimehours = total_hrs_by_event("downtime")
   if(total_hrs() === 0 ){
-    return 0
+    return 0;
   }
   return Math.round((total_hrs() - downtimehours) / total_hrs()*100)
 }

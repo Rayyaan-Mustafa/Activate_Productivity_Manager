@@ -14,7 +14,9 @@
 <body>
 
   <div class="tab">
-    <h1 class="tablinks" onclick="openActivateTab(event, 'Activate')">Activate</h1>
+    <h1 class="tablinks" onclick="openActivateTab(event, 'Activate');
+      document.querySelector('#percentProductive').innerHTML = percentProductive()">Activate 
+    </h1>
     <button class="tablinks" onclick="openActivateTab(event, 'Calendar')">Calendar</button>
     <button class="tablinks" onclick="openActivateTab(event, 'Visualize')">Visualize</button>
     <button class="tablinks" onclick="openActivateTab(event, 'Insights')">Insights</button>
