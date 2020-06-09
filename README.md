@@ -33,6 +33,12 @@ Input will be data about the user's daily activities, inputted directly by the u
 
 ---
 
+#### Future Improvements
+- Have user accounts
+- Save user data in a database to allow access across multiple devices
+- Simplify input process and and make pages more visually appealing
+
+
 # Design Patterns
 
 ## Composite Pattern
