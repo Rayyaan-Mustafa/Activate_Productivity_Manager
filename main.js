@@ -414,6 +414,7 @@ function hrs_by_event_by_day(eventTitle, day, month, year) {
 }
 
 function displayPolarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHART
+  var pos = $(document).scrollTop();
   if(window.chart) {window.chart.destroy();} 
   let polarChart = document.getElementById('Chart').getContext('2d');
 
@@ -443,14 +444,15 @@ function displayPolarChart() {//MOST LIKE BETTER TO IMPLEMENT THIS AS A BAR CHAR
       maintainAspectRatio: true,
       title: {
         display:true,
-        text: 'Total Hours By Event'
-      }
+        text: 'Total Hours By Event',
+      },
     }
   })
-
+  $(document).scrollTop(pos);
 }
 
 function displayBarChart() {
+  var pos = $(document).scrollTop();
   if(window.chart) {window.chart.destroy();} 
   let barChart = document.getElementById('Chart').getContext('2d');
 
@@ -459,7 +461,7 @@ function displayBarChart() {
     data: {
       labels: ["downtime", "eating", "exercise", "family-time", "homework", "productive-work", "reading", "sleep", "social-time", "work"],
       datasets: [{
-                data: [
+        data: [
           total_hrs_by_event("downtime"),
           total_hrs_by_event("eating"),
           total_hrs_by_event("exercise"),
@@ -479,16 +481,20 @@ function displayBarChart() {
       responsive: true,
       maintainAspectRatio: true,
       title: {
-        display:true,
+        display: true,
         text: 'Total Hours By Event'
+      },
+      legend: {
+        display: true,
       }
     }
   })
+  $(document).scrollTop(pos);
 }
 
 function displayPieChart() {
-
- if(window.chart) {window.chart.destroy();} 
+  var pos = $(document).scrollTop();
+  if(window.chart) {window.chart.destroy();} 
   let pieChart = document.getElementById('Chart').getContext('2d');
 
   window.chart = new Chart(pieChart, {
@@ -521,6 +527,7 @@ function displayPieChart() {
       }
     }
   })
+  $(document).scrollTop(pos);
 }
 function bgTheme() {
 //if default colors
@@ -617,7 +624,6 @@ doActionDiet = () => {
   var insight = "";
   for (var i = 0; i < getNumOfEvents(); i++) {
     var item = eventsContainer[i];
-    //console.log(item);
     if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth + 1
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'eating') {
       start = parseInt(item.startHour, 10);
@@ -707,7 +713,6 @@ doActionSleep = () => {
   var insight = "";
   for (var i = 0; i < getNumOfEvents(); i++) {
     var item = eventsContainer[i];
-    //console.log(item);
     if (parseInt(item.day, 10) === currday && parseInt(item.month, 10) === currmonth + 1
       && parseInt(item.year, 10) === curryear && item.eventTitle === 'sleep') {
       start = parseInt(item.startHour, 10);

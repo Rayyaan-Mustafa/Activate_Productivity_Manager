@@ -8,7 +8,7 @@
   <script src="unitTests.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2/dist/Chart.min.js"></script>
 </head>
 
 <body>
@@ -112,7 +112,7 @@
         </select>
       </div>
       <div>
-        <input class="btn" type="submit" value="Submit" 
+        <input class="btn" type="submit" value="Submit" style ="position: relative; top: 10px;"
             onclick="submitInput(); alert(); loadEventList();">
       </div>
       <div class="alert">
@@ -191,19 +191,16 @@
 
 <div id="Visualize" class="tabcontent">
   <h3>Visualize</h3>
-  <p>TO-DO: ADD VISUALIZE TAB. STRATEGY PATERN I THINK?</p> 
-    <input id="polarbtn" class="btn" type="button" value="Visualize Polar Area Chart"
-        onclick="displayPolarChart();">
-
-    <input id="barbtn" class="btn" type="button" value="Visualize Bar Chart"
-        onclick="displayBarChart();">
-
-    <input id="piebtn" class="btn" type="button" value="Visualize Pie Chart"
-        onclick="displayPieChart();">
-
-    <canvas id="Chart"></canvas>
+    <div div class="btn-group" style="width:100%">
+      <input id="polarbtn" class="btn" type="button" value="Visualize Polar Area Chart" style="width:33%; display: inline-block;"
+          onclick="displayPolarChart();">
+      <input id="barbtn" class="btn" type="button" value="Visualize Bar Chart" style="width:33%; display: inline-block;"
+          onclick="displayBarChart();">
+      <input id="piebtn" class="btn" type="button" value="Visualize Pie Chart" style="width:33%; display: inline-block;"
+          onclick="displayPieChart();">
+    </div>
+    <canvas id="Chart" height="120"></canvas>
 </div>
-
   <div1 id="Insights" class="tabcontent">
     <h3>Insights</h3>
     <input id="insightBtn" class = "btn" type="button" value="Generate insights" onclick="insightClient()">
@@ -236,7 +233,11 @@
   <input type="radio" id="darkColors "name="colors" value="Dark" >
   <label for="darkColors">Dark Colors</label><br><br>
 
-  <input id="savebtn" class="btn" type= "button"value="SAVE SETTINGS" onclick="saveSettings()">
+  <input id="savebtn" class="btn" type= "button"value="SAVE SETTINGS" onclick="saveSettings(); alert()">
+  <div class="alert" id ="alertSave">
+    <span class="fas fa-check"></span>
+    <span class="msg">Settings saved!</span>
+  </div>
   <input id="resetbtn" class="btn" type= "button"value="RESET" onclick="resetLSAndContainer()">
 
 </div>
